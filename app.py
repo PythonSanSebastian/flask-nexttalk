@@ -60,7 +60,7 @@ class ClockThread(Thread):
         self.actual()
 
 @socket.on('connect', namespace='/clock')
-def test_connect():
+def clock_connect():
     # need visibility of the global thread object
     global thread
     print('Client connected')
@@ -72,7 +72,7 @@ def test_connect():
         thread.start()
 
 @socket.on('disconnect', namespace='/clock')
-def test_disconnect():
+def clock_disconnect():
     print('Client disconnected')
 
 # Run

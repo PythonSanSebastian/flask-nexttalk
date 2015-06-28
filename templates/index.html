@@ -76,20 +76,25 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
 
     <script>
-    $(document).ready(function(){
-        //connect to the socket server.
-        var socket = io.connect('http://' + document.domain + ':' + location.port + '/clock');
-        //receive details from server
-        alert(socket)
-        socket.on('newtime', function(msg) {
-            alert(msg.time)
-            $('#time').load("" + msg.time);
-        });
-    });
+    function startTime() {
+        var today=new Date();
+        var h=today.getHours();
+        var m=today.getMinutes();
+        var s=today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('time').innerHTML = h+":"+m+":"+s;
+        var t = setTimeout(function(){startTime()},500);
+    }
+
+    function checkTime(i) {
+        if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
     </script>
   </head>
-  <body>
-      <div class="sidebar">
+  <body onload="startTime()">
+      <div class="sidebar" >
           <h4 id="time"> Time: {{momentjs(timestamp).format('HH:mm:ss')}} </h4>
           <p id="date">Date: {{momentjs(timestamp).format('YYYY-MM-DD')}} </p>
       </div>
