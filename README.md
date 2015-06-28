@@ -1,5 +1,6 @@
 # flask-nexttalk
-Working in python3
+Working in python2
+Testing in python3 (fails gevent-socketio instalation)
 
 Instructions:
 ------
