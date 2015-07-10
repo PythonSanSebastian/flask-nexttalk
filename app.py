@@ -11,9 +11,10 @@ from time import sleep
 # Initialize the Flask application
 app = Flask(__name__, static_path = '/static', static_url_path = '/static')
 app.config['DEBUG'] = True
+#app.config['HOST'] = "0.0.0.0"
+#app.config['PORT'] = '8080'
 
-
-socket = SocketIO(app)
+#socket = SocketIO(app)
 
 # Set jinja template global
 app.jinja_env.globals['momentjs'] = momentjs
@@ -26,6 +27,7 @@ def index():
     print(datetime.now().replace(minute = 0))
     return render_template('index.html', timestamp=naive, next_talk="next", talks=["talks1", "talks2"])
 
+'''
 @socket.on('connect', namespace='/clock')
 def clock():
     global thread
@@ -39,16 +41,15 @@ def clock():
 thread = Thread()
 thread_stop_event = Event()
 
+'''
+
+'''
 class ClockThread(Thread):
     def __init__(self):
         self.delay = 1
         super(ClockThread, self).__init__()
 
     def actual(self):
-        '''
-
-        :return: actual timestamp
-        '''
         pytz.timezone ("Europe/Madrid")
         while not thread_stop_event.isSet():
             naive = datetime.now()
@@ -59,6 +60,9 @@ class ClockThread(Thread):
     def run(self):
         self.actual()
 
+'''
+
+'''
 @socket.on('connect', namespace='/clock')
 def clock_connect():
     # need visibility of the global thread object
@@ -74,12 +78,13 @@ def clock_connect():
 @socket.on('disconnect', namespace='/clock')
 def clock_disconnect():
     print('Client disconnected')
+'''
 
 # Run
 if __name__ == '__main__':
-    #app.run(
-    #    debug=True,
-        #host = "0.0.0.0",
-        #port = 80
-    #)
-    socket.run(app)
+    app.run(
+        debug=True,
+        host = "0.0.0.0",
+        port = 8080
+    )
+    ##socket.run(app)
