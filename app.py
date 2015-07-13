@@ -30,9 +30,14 @@ def index():
     naive = datetime.now().replace(minute=50)
 
     talks = Talks()
-    current, next_t = talks.filter_talks(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    current, next_t = talks.filter_talks_by_time(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
     print current
     print next_t
+
+    rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    import pprint
+    pprint.pprint(rooms)
+
     # Render template with a test timestamp
     print(datetime.now().replace(minute=0))
     return render_template('index.html', timestamp=naive, next_talk="next", talks=["talks1", "talks2"])

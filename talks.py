@@ -10,10 +10,12 @@ class Talks(object):
 
     raw_talks = None
     time_based_talks = {}
+    room_based_talks = {}
 
     def __init__(self):
         self.raw_talks = json.loads(open(talks_path, "r").read())
         self.build_time_based_dict()
+        self.build_room_based_dict()
 
     def build_time_based_dict(self):
         for key, value in self.raw_talks.items():
@@ -27,7 +29,18 @@ class Talks(object):
                     v.update({'talk_type': key})
                     self.time_based_talks[time_range].append(v)
 
-    def filter_talks(self, time_obj):
+    def build_room_based_dict(self):
+        for key, value in self.raw_talks.items():
+            for k, v in value.items():
+                room = v.get('track_title') or None
+                if room:
+                    exists = self.room_based_talks.get(room)
+                    if exists is None:
+                        self.room_based_talks[room] = []
+                        v.update({'talk_type': key})
+                    self.room_based_talks[room].append(v)
+
+    def filter_talks_by_time(self, time_obj):
         items = self.time_based_talks.keys()
         current_talks = []
         next_talks = []
@@ -45,3 +58,30 @@ class Talks(object):
                 next_talks.extend([i for i in self.time_based_talks[item]])
 
         return current_talks, next_talks
+
+    def filter_talks_by_room(self, time_obj):
+        talks = {}
+
+        for key, value in self.room_based_talks.items():
+            room = talks.get(key)
+            if room is None:
+                talks[key] = {}
+                talks[key]['current'] = []
+                talks[key]['next'] = []
+
+            for v in value:
+                time_range = v.get('timerange')
+                if time_range:
+                    start, end = v.get('timerange').split(",")
+                    talk_start = datetime.strptime(start.strip(), '%Y-%m-%d %H:%M:%S')
+                    talk_end = datetime.strptime(end.strip(), '%Y-%m-%d %H:%M:%S')
+                    next_timeframe = talk_end + timedelta(hours=1.5)
+
+                    if talk_start <= time_obj <= talk_end:
+                        talks[key]['current'].append(v)
+
+                    if talk_end <= time_obj <= next_timeframe:
+                        talks[key]['next'].append(v)
+
+        return talks
+
