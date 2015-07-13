@@ -3,11 +3,12 @@ __author__ = 'oier'
 from flask import Flask, render_template
 from flask.ext.socketio import SocketIO, emit
 from momentjs import momentjs
-from datetime import datetime
+import datetime as dt
 import pytz
+import config as cf
 from threading import Thread, Event
 from time import sleep
-
+import talks
 # Initialize the Flask application
 app = Flask(__name__, static_path = '/static', static_url_path = '/static')
 app.config['DEBUG'] = True
@@ -19,66 +20,28 @@ app.config['DEBUG'] = True
 # Set jinja template global
 app.jinja_env.globals['momentjs'] = momentjs
 
-@app.route('/')
+@app.route('/Google')
 def index():
+    my_track = ['Google Room']
     pytz.timezone ("Europe/Madrid")
-    naive = datetime.now().replace(minute = 50)
-    # Render template with a test timestamp
-    print(datetime.now().replace(minute = 0))
-    return render_template('index.html', timestamp=naive, next_talk="next", talks=["talks1", "talks2"])
+    naive = dt.datetime.now().replace(minute = 50)
+    gtalks = talks.next_session("Google Room",  dt.datetime(2015,7,21,9,30), 3)
 
-'''
-@socket.on('connect', namespace='/clock')
-def clock():
-    global thread
-    print("Client Connected")
+    other_talks = []
+    actual = dict()
+    for r in cf.room_names:
+        if r not in my_track:
+            t = talks.next_session(r,  dt.datetime(2015,7,21,9,30), 1)
+            if t != None:
+                actual["track_title"] = r
+                actual["time"] = t["start_time"]
+                actual["talk"] = t["title"]
+                actual["speaker"] = t["speaker"]
+                other_talks.append(actual)
 
-    if not thread.isAlive():
-        thread = ClockThread()
-        thread.start()
+    print(dt.datetime.now().replace(minute = 0))
+    return render_template('index.html', timestamp=naive, next_talk=gtalks[0], talks=gtalks[1:3], track=other_talks)
 
-
-thread = Thread()
-thread_stop_event = Event()
-
-'''
-
-'''
-class ClockThread(Thread):
-    def __init__(self):
-        self.delay = 1
-        super(ClockThread, self).__init__()
-
-    def actual(self):
-        pytz.timezone ("Europe/Madrid")
-        while not thread_stop_event.isSet():
-            naive = datetime.now()
-            print(naive)
-            socket.emit('newtime', {'time' : naive}, namespace='/clock')
-            sleep(self.delay)
-
-    def run(self):
-        self.actual()
-
-'''
-
-'''
-@socket.on('connect', namespace='/clock')
-def clock_connect():
-    # need visibility of the global thread object
-    global thread
-    print('Client connected')
-
-    #Start the random number generator thread only if the thread has not been started before.
-    if not thread.isAlive():
-        print ("Starting Thread")
-        thread = ClockThread()
-        thread.start()
-
-@socket.on('disconnect', namespace='/clock')
-def clock_disconnect():
-    print('Client disconnected')
-'''
 
 # Run
 if __name__ == '__main__':
@@ -87,4 +50,3 @@ if __name__ == '__main__':
         host = "0.0.0.0",
         port = 8080
     )
-    ##socket.run(app)

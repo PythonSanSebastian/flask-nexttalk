@@ -119,14 +119,12 @@
           </div>
           <div class="slider-wrapper">
                 <div class="slider slider1">
+                    {% for t in track %}
                     <div>
-                        Barria Room<br>
-                        Talk
+                        {{ t.track_title }}<br>
+                        {{t.time}} : {{ t.talk }} by {{ t.speaker }}
                     </div>
-                    <div>
-                        Python Anywhere Room <br>
-                        Talk
-                    </div>
+                    {% endfor %}
                 </div>
           </div>
           <div class="footer">
