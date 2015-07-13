@@ -64,7 +64,7 @@
       "emails": "guido@python.org"
     },
     "366": {
-      "track_title": "",
+      "track_title": "Google Room",
       "speakers": "Mandy Waite",
       "abstracts": [
         "You've solved the issue of process-level reproducibility by packaging up\r\nyour apps and execution environments into a number of Docker containers.\r\nBut once you have a lot of containers running, you'll probably need to\r\ncoordinate them across a cluster of machines while keeping them healthy and\r\nmaking sure they can find each other. Trying to do this imperatively can\r\nquickly turn into an unmanageable mess! Wouldn't it be helpful if you could\r\ndeclare to your cluster what you want it to do, and then have the cluster\r\nassign the resources to get it done and to recover from failures and scale\r\non demand?\r\n>\r\nKubernetes (http://kubernetes.io) is an open source, cross platform cluster\r\nmanagement and container orchestration platform that simplifies the complex\r\ntasks of deploying and managing your applications in Docker containers. You\r\ndeclare a desired state, and Kubernetes does all the work needed to create\r\nand maintain it. In this talk, we\u2019ll look at the basics of Kubernetes and\r\nat how to map common applications to these concepts. This will include a\r\nhands-on demonstration and visualization of the steps involved in getting\r\nan application up and running on Kubernetes.",
@@ -78,7 +78,7 @@
       ],
       "duration": 60,
       "title": "Keynote: So, I have all these Docker containers, now what?",
-      "timerange": "",
+      "timerange": "2015-07-24 09:30:00, 2015-07-24 10:30:00",
       "have_tickets": [
         true
       ],
@@ -86,10 +86,10 @@
       "emails": "amandarwaite@gmail.com"
     },
     "363": {
-      "track_title": "",
+      "track_title": "Google Room",
       "speakers": "Holger Krekel",
       "abstracts": [
-        "In this talk, I'll discuss the recent rise of immutable state concepts in languages and network protocols.  And how the advent of hash-based data structures and replication strategies are shaking the client/server web service paradigm which rests on managing mutable state through http.  By contrast, building on git, bittorrent and other content addressed data structures provides for a more secure, efficient decentralized communication topology.   There are projects, thoughts and talk to create new web standards to bring such technologies to mass deployment and fuel a new wave of decentralization.  What can Python bring to the table?  ",
+        "Many would like to see more decentralization but what does it mean, really?  In this talk, I'll discuss the recent rise of immutable state concepts in languages and network protocols.  And how the advent of hash-based data structures and replication strategies are shaking the client/server web service paradigm which rests on managing mutable state through http.  By contrast, building on git, bittorrent and other content addressed data structures provides for a more secure, efficient decentralized communication topology.   There are projects, thoughts and talk to create new web standards to bring such technologies to mass deployment and fuel a new wave of decentralization.  What can Python bring to the table?   ",
         "",
         ""
       ],
@@ -98,7 +98,7 @@
       ],
       "duration": 60,
       "title": "Keynote: Towards a more effective, decentralized web",
-      "timerange": "",
+      "timerange": "2015-07-22 09:30:00, 2015-07-22 10:30:00",
       "have_tickets": [
         true
       ],
@@ -557,7 +557,7 @@
       "title": "Bringing PostgreSQL towards zero downtime migration with Python",
       "timerange": "2015-07-24 15:45:00, 2015-07-24 16:15:00",
       "have_tickets": [
-        false
+        true
       ],
       "id": 236,
       "emails": "matt.rigal@googlemail.com"
@@ -856,7 +856,7 @@
       ],
       "duration": 30,
       "title": "Data Structures with Python",
-      "timerange": "2015-07-23 15:45:00, 2015-07-23 16:15:00",
+      "timerange": "2015-07-23 16:45:00, 2015-07-23 17:15:00",
       "have_tickets": [
         true
       ],
@@ -910,7 +910,7 @@
       "emails": "pablito56@gmail.com"
     },
     "97": {
-      "track_title": "Barria2 Room (Local track)",
+      "track_title": "Barria2 Room (Local Track)",
       "speakers": "Alejandro Castillo",
       "abstracts": [
         "\u00bfY si pudieras centrarte en la funcionalidad de tus\r\nservicios en lugar de programar la integraci\u00f3n entre ellos?\r\n\r\nlymph es un framework con personalidad propia para escribir\r\nservicios en Python que te permite hacer justo eso. Incluye\r\ndescubrimiento de servicios extensible,  comunicaci\u00f3n v\u00eda\r\npetici\u00f3n-respuesta, comunicaci\u00f3n v\u00eda publicaci\u00f3n-subscripci\u00f3n\r\nextensible y gesti\u00f3n de procesos.\r\n\r\nA medida que crecen nuestros equipos de desarrollo, nos alejamos\r\ncada vez m\u00e1s de una arquitectura monol\u00edtica. Queremos empezar a\r\nescribir servicios sin tener que preocuparnos de los requisitos de\r\ninfraestructura. Queremos desarrollar de forma r\u00e1pida, centr\u00e1ndonos\r\nen nuestro trabajo.\r\n\r\nEn esta charla os ense\u00f1aremos lo f\u00e1cil que es desarrollar y\r\nejecutar servicios con lymph.\r\n\r\nEchad un ojo a http://lymph.io. Esperamos vuestros pull requests."
@@ -1320,7 +1320,7 @@
       ],
       "duration": 45,
       "title": "Get native with Cython",
-      "timerange": "2015-07-21 11:00:00, 2015-07-21 11:45:00",
+      "timerange": "2015-07-21 14:30:00, 2015-07-21 15:15:00",
       "have_tickets": [
         true
       ],
@@ -1427,7 +1427,7 @@
       "emails": "hjwp2@cantab.net"
     },
     "195": {
-      "track_title": "Barria2 Room (Education Summit)",
+      "track_title": "Barria1 Room",
       "speakers": "Anders Lehmann",
       "abstracts": [
         "In this talk I will present some tools for working with Geographic Information Systems in Python.\r\n\r\nGeographic information Systems are widely used for managing geographic (map) data. As an example I will present how to use Open Street Map data (http://openstreetmap.org/), in routing, traffic planning and estimation of pollution emission.\r\n\r\nFor the purpose of the project EcoSense (http://ecosense.au.dk), GPS data from users smartphones are mapped to OSM roads. The map matching algorithm is written in Python and uses data from the database PostgreSQL, with the PostGIS extension. \r\n\r\nOne of the goals of the EcoSense project is to devise methods to improve the estimation of air quality in urban environments.\r\n"
@@ -1441,7 +1441,7 @@
       ],
       "duration": 30,
       "title": "How to GIS with Python",
-      "timerange": "2015-07-23 16:45:00, 2015-07-23 17:15:00",
+      "timerange": "2015-07-24 11:00:00, 2015-07-24 11:30:00",
       "have_tickets": [
         true
       ],
@@ -1534,7 +1534,7 @@
       "emails": "encukou@gmail.com"
     },
     "271": {
-      "track_title": "Barria2 Room (Local track)",
+      "track_title": "Barria2 Room (Local Track)",
       "speakers": "Todd Waits",
       "abstracts": [
         "Generar  documentaci\u00f3n de forma din\u00e1mica es relevante para los ingenieros de software porque ellos interact\u00faan con la data en el  mismo donde est\u00e1 localizada.  Es tambi\u00e9n relevante para los clientes porque la documentaci\u00f3n se puede presentar en un formato organizado y claro.  En esta presentaci\u00f3n, hablaremos de c\u00f3mo usar un proceso unificado para generar din\u00e1micamente la documentaci\u00f3n de diversas fuentes de data incluyendo los wikis y los sistemas de rastreo de incidencias.  \r\n\r\nIdealmente, nosotros como ingenieros deber\u00edamos interactuar  solamente con una Fuente de informaci\u00f3n que nos dara como resultado una  documentaci\u00f3n vigente y correspondiente al estado actual de un sistema.  En el Presente, el cliente recibe documentos incompletos y sin actualizaci\u00f3n dando una incorrecta impresi\u00f3n del estado vigente de un Sistema.  Usando un proceso unificado para generar documentaci\u00f3n de solo una Fuente de data permite presentar al cliente lo que se merece: artefactos actualizados y completos dando el real y mas reciente estado de un Sistema.  El resto de esta presentaci\u00f3n se enfocara en c\u00f3mo lograr este Sistema.",
@@ -1630,7 +1630,7 @@
       "emails": "julian@grayvines.com"
     },
     "150": {
-      "track_title": "Barria2 Room (Local track)",
+      "track_title": "Barria2 Room (Local Track)",
       "speakers": "oier etxaniz",
       "abstracts": [
         "Orain dela urte batzuk asi genuen bidea azalduko dut, Python San Sebastian elkartea nola sotu genuen eta hortik pixkanaka pixkanaka nola sortzen joan den EuroPython sortzeko grina. \r\n\r\nGendeari nahi izan eskero eta lan egin eskero EuroPython bezelako kongresu bat antolatzea posible dela erakustea du helburu hitzaldi honek."
@@ -1720,7 +1720,7 @@
       "emails": "yamila.ms@gmail.com"
     },
     "239": {
-      "track_title": "Barria2 Room (Local track)",
+      "track_title": "Barria2 Room (Local Track)",
       "speakers": "Yamila Moreno",
       "abstracts": [
         "Un proyecto hecho en Django durante dos a\u00f1os da para muchas an\u00e9cdotas y mucho aprendizaje.  Esta charla es un repaso por las decisiones sobre lo humano y lo t\u00e9cnico que fuimos tomando durante el desarrollo del proyecto.\r\n\r\nSe\u00f1alar\u00e9 las buenas decisiones que tomamos en el equipo, y tambi\u00e9n las que no nos salieron bien y nos hicieron aprender por las malas. \r\n\r\nTanto las buenas como las malas decisiones nos ense\u00f1aron much\u00edsimo y aqu\u00ed las compilo junto con unos cuantos tips que pueden divertir y, ojal\u00e1, inspirar a la audiencia, especialmente a aquellas personas que se enfrentan por primera vez a un proyecto grande.\r\n",
@@ -1883,7 +1883,7 @@
       "emails": "carlesba@gmail.com"
     },
     "66": {
-      "track_title": "Barria2 Room (Local track)",
+      "track_title": "Barria2 Room (Local Track)",
       "speakers": "Ra\u00fal Cumplido",
       "abstracts": [
         "Seg\u00fan wikipedia:\r\n\"La metaprogramaci\u00f3n consiste en escribir programas que escriben o manipulan otros programas (o a s\u00ed mismos) como datos, o que hacen en tiempo de compilaci\u00f3n parte del trabajo que, de otra forma, se har\u00eda en tiempo de ejecuci\u00f3n. Esto permite al programador ahorrar tiempo en la producci\u00f3n de c\u00f3digo.\"\r\nEn esta charla veremos diferentes mecanismos que Python proporciona como:\r\n - Decoradores\r\n - Metaclasses\r\n - Descriptors\r\nA trav\u00e9s de varios ejemplos veremos como reutilizar c\u00f3digo en varias funciones y clases, como modificar como nuestras clases se generan, como se genera una clase (que funciones se llaman cuando una clase se crea) o como se genera una instancia.\r\nVeremos tambi\u00e9n que f\u00e1cilmente se nos puede ir de las manos y como utilizar con cuidado las herramientas que Python nos proporciona.",
@@ -2097,7 +2097,7 @@
       ],
       "duration": 30,
       "title": "Online Education: challenges and opportunities for Staff and Students",
-      "timerange": "2015-07-23 12:30:00, 2015-07-23 13:00:00",
+      "timerange": "2015-07-23 15:45:00, 2015-07-23 16:15:00",
       "have_tickets": [
         true
       ],
@@ -2269,24 +2269,6 @@
       "id": 52,
       "emails": "romain.py@gmail.com"
     },
-    "343": {
-      "track_title": "Barria1 Room",
-      "speakers": "Ronan Lamy",
-      "abstracts": [
-        "This is a talk for mediocre Python programmers by a mediocre programmer.  PyPy\r\nis an alternative implementation of Python. It is notorious for being fast, but\r\nalso for using clever algorithms pertaining to advanced concepts such as type\r\ninference, garbage collection, just-in-time compilation, etc. So, can we,\r\nmediocre programmers, realistically use PyPy?\r\n\r\nYes, absolutely. In fact, PyPy developers did all that hard work so that we\r\nwouldn't have to. As we'll see, it runs most Python code exactly like CPython\r\ndoes, save that it magically makes it faster.\r\n\r\nPorting existing applications is always more involved than running a simple\r\nscript, so we'll also examine likely difficulties such as code relying on\r\nCPython implementation details, and dependencies on C extensions, and explore\r\nsimple principles to let PyPy run your code even faster.\r\n\r\nFinally, we'll have a glimpse of the future by looking at what's brewing in \r\nthe PyPy lair, such as software transactional memory, new speed optimisations,\r\nbetter support for Python 3 and NumPy, ...\r\n\r\n\r\n"
-      ],
-      "tags": [
-        "PyPy"
-      ],
-      "duration": 45,
-      "title": "PyPy for mediocre programmers",
-      "timerange": "2015-07-24 11:00:00, 2015-07-24 11:45:00",
-      "have_tickets": [
-        true
-      ],
-      "id": 343,
-      "emails": "ronan.lamy@gmail.com"
-    },
     "129": {
       "track_title": "Google Room",
       "speakers": "Peter Hoffmann",
@@ -2303,7 +2285,7 @@
       "title": "PySpark - Data processing in Python on top of Apache Spark.",
       "timerange": "2015-07-22 16:45:00, 2015-07-22 17:15:00",
       "have_tickets": [
-        false
+        true
       ],
       "id": 129,
       "emails": "peter.hoffmann@blue-yonder.com"
@@ -2512,7 +2494,7 @@
       "emails": "agrs700@gmail.com"
     },
     "201": {
-      "track_title": "Barria2 Room (Local track)",
+      "track_title": "Barria2 Room (Local Track)",
       "speakers": "Mikel Larreategi",
       "abstracts": [
         "2000 urtean CodeSyntax sortu zenetik Python erabili dugu gure lan ia guztiak egiteko. Lan horiek egitean izandako (r)eboluzioa azalduko dugu hitzaldi honetan: python script arruntetatik, Zope aplikazioen zerbitzarian nabigatzaile baten programatzetik, fitxategi sisteman programatzera pasatu gara, Turbogears ere ikutu dugu eta orain Plone, Django eta Pyramid darabilgu.\r\n\r\nSince the beginning of our company in year 2000 we have been using Python to do our work. We will explain the (r)evolution we faced working with python during this 15 years: small python scripts, browser-based-development using Zope Application Server, we touched Turbogears and now Plone, Django and Pyramid applications."
@@ -2694,6 +2676,26 @@
       "id": 352,
       "emails": "larry@hastings.org"
     },
+    "377": {
+      "track_title": "Barria2 Room (Education Summit)",
+      "speakers": "Harry Percival",
+      "abstracts": [
+        "Python may be the ideal language for teaching because of its simplicity and readability, but actually getting a working and consistent development environment installed on a diverse set of student (or school) computers can be less than straightforward. And then there's pip, numpy, scipy, windows vs unix command lines...\r\n\r\nAs a result, we've had lots of teachers coming to PythonAnywhere over the years, to skip all these problems. We've recently started adding some extra features to help teachers and students which we're keen to share with the EuroPython audience.",
+        "",
+        ""
+      ],
+      "tags": [
+        "education"
+      ],
+      "duration": 45,
+      "title": "PythonAnywhere and Education",
+      "timerange": "2015-07-23 12:30:00, 2015-07-23 13:15:00",
+      "have_tickets": [
+        true
+      ],
+      "id": 377,
+      "emails": "hjwp2@cantab.net"
+    },
     "65": {
       "track_title": "Barria2 Room (Education Summit)",
       "speakers": "James Robinson",
@@ -2799,7 +2801,7 @@
       ],
       "duration": 45,
       "title": "Salting things up in the sysadmin's world",
-      "timerange": "2015-07-21 14:30:00, 2015-07-21 15:15:00",
+      "timerange": "2015-07-21 11:00:00, 2015-07-21 11:45:00",
       "have_tickets": [
         true
       ],
@@ -3417,7 +3419,7 @@
       "emails": "fuzzyman@gmail.com"
     },
     "77": {
-      "track_title": "Barria2 Room (Local track)",
+      "track_title": "Barria2 Room (Local Track)",
       "speakers": "Jes\u00fas Espino",
       "abstracts": [
         "A d\u00eda de hoy usamos un enorme conjunto de bibliotecas y frameworks, adem\u00e1s los usamos con cierta libertad dentro de nuestro c\u00f3digo, y pasado el tiempo nos damos cuenta de que esa biblioteca, no cubre mis necesidades, o tiene alg\u00fan fallo, o no escala bien en proyectos m\u00e1s grandes... en resumen, hemos ca\u00eddo en una trampa. No se puede evitar caer en estas trampas, porque depende de nuestras necesidades y las bibliotecas que utilizamos, por lo tanto, solo podemos estar lo mejor preparados posibles para salir de ellas tan pronto como nos demos cuenta.\r\n\r\nComo soluci\u00f3n a esto, plantear\u00e9 varias v\u00edas (nada innovadoras, pero menos usadas de lo que deber\u00edan). Unit testing (TDD idealmente), arquitectura hexagonal, y algunas reglas b\u00e1sicas de clean code.",
@@ -4396,7 +4398,7 @@
       "title": "AsyncIO ecosystem",
       "timerange": "",
       "have_tickets": [
-        false
+        true
       ],
       "id": 280,
       "emails": "gmludo@gmail.com"
