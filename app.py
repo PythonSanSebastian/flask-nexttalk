@@ -1,30 +1,35 @@
 __author__ = 'oier'
 
-from flask import Flask, render_template
-from flask.ext.socketio import SocketIO, emit
-from momentjs import momentjs
-from datetime import datetime
 import pytz
+from datetime import datetime
 from threading import Thread, Event
 from time import sleep
 
+from flask import Flask, render_template
+from flask.ext.socketio import SocketIO
+from momentjs import momentjs
+
+
 # Initialize the Flask application
-app = Flask(__name__, static_path = '/static', static_url_path = '/static')
+app = Flask(__name__, static_path='/static', static_url_path='/static')
 app.config['DEBUG'] = True
 
-
 socket = SocketIO(app)
-
 # Set jinja template global
 app.jinja_env.globals['momentjs'] = momentjs
 
+thread = Thread()
+thread_stop_event = Event()
+
+
 @app.route('/')
 def index():
-    pytz.timezone ("Europe/Madrid")
-    naive = datetime.now().replace(minute = 50)
+    pytz.timezone("Europe/Madrid")
+    naive = datetime.now().replace(minute=50)
     # Render template with a test timestamp
-    print(datetime.now().replace(minute = 0))
+    print(datetime.now().replace(minute=0))
     return render_template('index.html', timestamp=naive, next_talk="next", talks=["talks1", "talks2"])
+
 
 @socket.on('connect', namespace='/clock')
 def clock():
@@ -36,28 +41,25 @@ def clock():
         thread.start()
 
 
-thread = Thread()
-thread_stop_event = Event()
-
 class ClockThread(Thread):
     def __init__(self):
         self.delay = 1
         super(ClockThread, self).__init__()
 
     def actual(self):
-        '''
-
+        """
         :return: actual timestamp
-        '''
-        pytz.timezone ("Europe/Madrid")
+        """
+        pytz.timezone("Europe/Madrid")
         while not thread_stop_event.isSet():
             naive = datetime.now()
             print(naive)
-            socket.emit('newtime', {'time' : naive}, namespace='/clock')
+            socket.emit('newtime', {'time': naive}, namespace='/clock')
             sleep(self.delay)
 
     def run(self):
         self.actual()
+
 
 @socket.on('connect', namespace='/clock')
 def clock_connect():
@@ -65,11 +67,12 @@ def clock_connect():
     global thread
     print('Client connected')
 
-    #Start the random number generator thread only if the thread has not been started before.
+    # Start the random number generator thread only if the thread has not been started before.
     if not thread.isAlive():
         print ("Starting Thread")
         thread = ClockThread()
         thread.start()
+
 
 @socket.on('disconnect', namespace='/clock')
 def clock_disconnect():
@@ -77,9 +80,9 @@ def clock_disconnect():
 
 # Run
 if __name__ == '__main__':
-    #app.run(
+    # app.run(
     #    debug=True,
-        #host = "0.0.0.0",
-        #port = 80
-    #)
+    #     host = "0.0.0.0",
+    #     port = 80
+    # )
     socket.run(app)
