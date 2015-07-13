@@ -1,40 +1,47 @@
-__author__ = 'oier'
+import os
+import json
+from datetime import datetime, timedelta
 
 
-import config as cf
-import sqlite3
+talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/talks.json")
 
 
-def testing(day=1):
-    conn = sqlite3.connect(cf.DB_PATH)
-    c = conn.cursor()
-    #SCHEDULE ID is about DAY, starting 1 to 7 (conference_schedule)
-    '''
-    events: id, schedule_id, start_time, talk_id, custom, abstract, duration, tags, sponsor_id, video, streaming, bookable, seats
-    eventtracks: idm track_id, event_id
-    talk: id, title, slug, duration, conference, duration, qa_duration, language, slides, video_tyoe, ...
-    ... level
-    takspeaker = talk_id, speaker_name, speaker_last_name
-    '''
+class Talks(object):
 
-    events = c.execute("SELECT * FROM conference_event WHERE schedule_id="+str(day)).fetchall()
-    event_in_room = c.execute("SELECT" +
-                           " conference_eventtrack.event_id," +
-                           " conference_track.title" +
-                           " FROM conference_eventtrack JOIN conference_track" +
-                           " ON conference_eventtrack.track_id=conference_track.id").fetchall()
+    raw_talks = None
+    time_based_talks = {}
 
-    talk = c.execute("SELECT id,title,duration,level FROM conference_talk").fetchall()
-    talkspeaker = c.execute("SELECT talk_id,first_name,last_name "+
-                            "FROM conference_talkspeaker JOIN auth_user "+
-                            "ON conference_talkspeaker.speaker_id=auth_user.id").fetchall()
+    def __init__(self):
+        self.raw_talks = json.loads(open(talks_path, "r").read())
+        self.build_time_based_dict()
 
+    def build_time_based_dict(self):
+        for key, value in self.raw_talks.items():
+            for k, v in value.items():
+                # apparently there are some unset timerange keys
+                time_range = v.get('timerange') or None
+                if time_range is not None:
+                    exists = self.time_based_talks.get(time_range)
+                    if exists is None:
+                        self.time_based_talks[time_range] = []
+                    v.update({'talk_type': key})
+                    self.time_based_talks[time_range].append(v)
 
-    for e in events:
-        print(e[0])
+    def filter_talks(self, time_obj):
+        items = self.time_based_talks.keys()
+        current_talks = []
+        next_talks = []
 
-    conn.close()
+        for item in items:
+            start, end = item.split(",")
+            talk_start = datetime.strptime(start.strip(), '%Y-%m-%d %H:%M:%S')
+            talk_end = datetime.strptime(end.strip(), '%Y-%m-%d %H:%M:%S')
+            next_timeframe = talk_end + timedelta(hours=1.5)
 
-# Run
-if __name__ == '__main__':
-    testing(1)
+            if talk_start <= time_obj <= talk_end:
+                current_talks.extend([i for i in self.time_based_talks[item]])
+
+            if talk_end <= time_obj <= next_timeframe:
+                next_talks.extend([i for i in self.time_based_talks[item]])
+
+        return current_talks, next_talks
