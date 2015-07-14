@@ -14,8 +14,10 @@ class Talks(object):
 
     def __init__(self):
         self.raw_talks = json.loads(open(talks_path, "r").read())
-        self.build_time_based_dict()
-        self.build_room_based_dict()
+        if not self.time_based_talks:
+            self.build_time_based_dict()
+        if not self.room_based_talks:
+            self.build_room_based_dict()
 
     def build_time_based_dict(self):
         for key, value in self.raw_talks.items():
@@ -85,3 +87,12 @@ class Talks(object):
 
         return talks
 
+
+    def get_current(self, time_obj):
+        cur = []
+        for key, talk in self.filter_talks_by_room(time_obj).items():
+            cur.append(talk)
+        return cur
+
+    def get_one_room(self, room, time_obj):
+        return self.filter_talks_by_room(time_obj)[room]

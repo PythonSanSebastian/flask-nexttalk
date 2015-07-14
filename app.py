@@ -35,60 +35,53 @@ def index():
     #print next_t
 
     rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
-    #import pprint
-    #pprint.pprint(rooms)
 
+    cur = talks.get_current(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    import pprint
+    #pprint.pprint(rooms)
+    pprint.pprint(cur)
     # Render template with a test timestamp
     print(datetime.now().replace(minute=0))
-    return render_template('index.html', timestamp=naive, next_talk="next", talks=["talks1", "talks2"], talks_list=rooms)
+    return render_template('index.html',
+                           room_name = "HALL",
+                           timestamp=naive,
+                           next_talk="next",
+                           talks=["talks1", "talks2"],
+                           talks_list=rooms)
+
+@app.route('/menu/')
+def menu():
+    talks = Talks()
+    rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    return render_template('menu.html',
+                           options = rooms.keys() )
 
 
-@socket.on('connect', namespace='/clock')
-def clock():
-    global thread
-    print("Client Connected")
-
-    if not thread.isAlive():
-        thread = ClockThread()
-        thread.start()
+@app.route('/room/<track>')
+def room_info(track):
+    return render_room(track)
 
 
-class ClockThread(Thread):
-    def __init__(self):
-        self.delay = 1
-        super(ClockThread, self).__init__()
+def render_room(room):
+    pytz.timezone("Europe/Madrid")
+    naive = datetime.now().replace(minute=50)
 
-    def actual(self):
-        """
-        :return: actual timestamp
-        """
-        pytz.timezone("Europe/Madrid")
-        while not thread_stop_event.isSet():
-            naive = datetime.now()
-            print(naive)
-            socket.emit('newtime', {'time': naive}, namespace='/clock')
-            sleep(self.delay)
+    talks = Talks()
 
-    def run(self):
-        self.actual()
+    rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+
+    actual = rooms.pop(room)
+    other = rooms
 
 
-@socket.on('connect', namespace='/clock')
-def clock_connect():
-    # need visibility of the global thread object
-    global thread
-    print('Client connected')
+    print(datetime.now().replace(minute=0))
+    return render_template('index.html',
+                           room_name = room,
+                           timestamp=naive,
+                           next_talk=actual["current"],
+                           talks=actual["next"],
+                           talks_list=other)
 
-    # Start the random number generator thread only if the thread has not been started before.
-    if not thread.isAlive():
-        print ("Starting Thread")
-        thread = ClockThread()
-        thread.start()
-
-
-@socket.on('disconnect', namespace='/clock')
-def clock_disconnect():
-    print('Client disconnected')
 
 # Run
 if __name__ == '__main__':
