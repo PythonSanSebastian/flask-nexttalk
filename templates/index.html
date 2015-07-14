@@ -129,6 +129,30 @@
                     </div>
                 </div>
           </div>
+
+          {% if talks_list %}
+          <table>
+              <tr>
+                    <th>Track</th>
+                    <th>Talk title</th>
+                    <th>Speakers</th>
+                    <th>Talk type</th>
+                    <th>Timing</th>
+              </tr>
+              {% for track in talks_list %}
+              {% for t in talks_list[track]["current"] %}
+              <tr>
+                  <th>{{ t.track_title }}</th>
+                  <th>{{ t.title }}</th>
+                  <th>{{ t.speakers }}</th>
+                  <th>{{ t.talk_type }}</th>
+                  <th> "testing"    </th>
+              </tr>
+              {% endfor %}
+              {% endfor %}
+          </table>
+          {% endif %}
+
           <div class="footer">
               <div class=".col-xs-6 .col-sm-3">
                   <img src="/static/media/sponsors/brandsite_c.png" height="30"></img>
