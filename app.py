@@ -1,16 +1,25 @@
 __author__ = 'oier'
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+from itertools import islice, chain
+from threading import Thread, Event
+from time import sleep
+import datetime as dt
 
 from flask import Flask, render_template
 from flask.ext.socketio import SocketIO, emit
 from momentjs import momentjs
-import datetime as dt
 import pytz
+
+from converters import RoomsConverter
 import config as cf
-from threading import Thread, Event
-from time import sleep
 import talks
+
 # Initialize the Flask application
-app = Flask(__name__, static_path = '/static', static_url_path = '/static')
+app = Flask(__name__, static_path='/static', static_url_path='/static')
+app.url_map.converters['rooms'] = RoomsConverter
 app.config['DEBUG'] = True
 #app.config['HOST'] = "0.0.0.0"
 #app.config['PORT'] = '8080'
@@ -20,33 +29,32 @@ app.config['DEBUG'] = True
 # Set jinja template global
 app.jinja_env.globals['momentjs'] = momentjs
 
-@app.route('/Google')
-def index():
-    my_track = ['Google Room']
-    pytz.timezone ("Europe/Madrid")
-    naive = dt.datetime.now().replace(minute = 50)
-    gtalks = talks.next_session("Google Room",  dt.datetime(2015,7,21,9,30), 3)
+
+@app.route('/rooms/<rooms:room>')
+def index(room):
+    pytz.timezone("Europe/Madrid")
+    naive = dt.datetime.now().replace(minute=50)
+    # Next session returns a generator, we're only interested in N talks,
+    # so we use itertools.islice to get those n talks.
+    room_talks = islice(talks.next_session(room, dt.datetime(2015, 7, 21, 9, 30)), 3)
+
+    other_rooms = [r for r in cf.room_names if r != room]
 
     other_talks = []
-    actual = dict()
-    for r in cf.room_names:
-        if r not in my_track:
-            t = talks.next_session(r,  dt.datetime(2015,7,21,9,30), 1)
-            if t != None:
-                actual["track_title"] = r
-                actual["time"] = t["start_time"]
-                actual["talk"] = t["title"]
-                actual["speaker"] = t["speaker"]
-                other_talks.append(actual)
+    for r in other_rooms:
+        other_talks = chain(talks.next_session(r,  dt.datetime(2015, 7, 21, 9, 30)), other_talks)
 
-    print(dt.datetime.now().replace(minute = 0))
-    return render_template('index.html', timestamp=naive, next_talk=gtalks[0], talks=gtalks[1:3], track=other_talks)
+    return render_template('index.html',
+                           timestamp=naive,
+                           next_talk=next(room_talks),
+                           talks=room_talks,
+                           track=other_talks)
 
 
 # Run
 if __name__ == '__main__':
     app.run(
         debug=True,
-        host = "0.0.0.0",
-        port = 8080
+        host="0.0.0.0",
+        port=8080
     )
