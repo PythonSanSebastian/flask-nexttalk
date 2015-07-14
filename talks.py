@@ -1,20 +1,17 @@
 __author__ = 'oier'
-
-
-import config as cf
 import sqlite3
 
 import json
 import datetime as dt
 import utils as ut
 import config as cf
-from   operator import itemgetter
+from operator import itemgetter
 
 
 def testing(day=1):
     conn = sqlite3.connect(cf.DB_PATH)
     c = conn.cursor()
-    #SCHEDULE ID is about DAY, starting 1 to 7 (conference_schedule)
+    # SCHEDULE ID is about DAY, starting 1 to 7 (conference_schedule)
     '''
     events: id, schedule_id, start_time, talk_id, custom, abstract, duration, tags, sponsor_id, video, streaming, bookable, seats
     eventtracks: idm track_id, event_id
@@ -41,8 +38,6 @@ def testing(day=1):
 
     conn.close()
 
-
-
 #################
 # GET TALKS FROM JSON
 ################
@@ -62,32 +57,36 @@ def talk_schedule_2(start, end):
 
     return output_day(start_date), output_hour(start_date), output_day(end_date), output_hour(end_date)
 
+
+def in_room(room, talk):
+    return ut.to_str(talk.get('track_title', '').split(', ')[0]) == room
+
+
 def get_all_talks_from_room(room):
-    ts = []
     for session_name in cf.session_names:
         talks = cf.talk_sessions[session_name]
-        talks = [talks[talk_id] for talk_id in talks]
+        talks = [talks[talk_id] for talk_id in talks if in_room(room, talks[talk_id])]
         talks = sorted(talks, key=itemgetter('title'))
         for talk in talks:
-            if (ut.to_str(talk.get('track_title', '').split(', ')[0]) == room):
-                speakers  = ut.to_str(talk['speakers'])
-                title     = ut.to_str(talk['title'])
-                timerange = ut.to_str(talk.get('timerange', '').split(';')[0])
-                try:
-                    start_date, start_hour, end_day, end_hour = talk_schedule_2(*timerange.split(', '))
-                except:
-                    start, end = ('', '')
+            speakers  = ut.to_str(talk['speakers'])
+            title     = ut.to_str(talk['title'])
+            timerange = ut.to_str(talk.get('timerange', '').split(';')[0])
+            try:
+                start_date, start_hour, end_day, end_hour = talk_schedule_2(*timerange.split(', '))
+            except:
+                start, end = ('', '')
 
-                t = { 'speaker': speakers,
-                    'title': title,
-                    'start_date': start_date,
-                    'start_time': start_hour,
-                     'end_date': end_day,
-                    'end_time': end_hour}
-                ts.append(t)
-    return(ts)
+            yield {'speaker': speakers,
+                   'title': title,
+                   'talk': title,
+                   'track_title': room,
+                   'start_date': start_date,
+                   'start_time': start_hour,
+                   'end_date': end_day,
+                   'end_time': end_hour}
 
-def next_session(room, time, quant=1):
+
+def next_session(room, time):
     input_format = "%H:%M"
     ts = get_all_talks_from_room(room)
     ts = sorted(ts, key=itemgetter("start_date", "start_time"))
@@ -96,8 +95,7 @@ def next_session(room, time, quant=1):
         if int(talk["start_date"]) == time.day:
             start_dt_hour = dt.datetime.strptime(talk["start_time"], input_format)
             if start_dt_hour.time() > time.time():
-                next_session.append(talk)
-    return(next_session[0:quant])
+                yield talk
 
 # Run
 if __name__ == '__main__':

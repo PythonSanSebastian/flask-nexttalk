@@ -19,3 +19,16 @@ room_names = ['Barria2 Room (Education Summit)', 'Barria2 Room', 'Room A4',
               'A2 Room', 'Room B Terrace', 'Room C1', 'Barria1 Room',
               'PythonAnywhere Room', 'Google Room', 'Exhibition Hall / Helpdesk ',
               'Barria2 Room (Local Track)']
+
+
+valid_rooms_routes = {'a2': 'A2 Room',
+                      'barria1': 'Barria1 Room',
+                      'barria2': 'Barria2 Room',
+                      'barria2_education_summit': 'Barria2 Room (Education Summit)',
+                      'barria2_local_track': 'Barria2 Room (Local Track)',
+                      'exhibition_hall__helpdesk_': 'Exhibition Hall / Helpdesk ',
+                      'google': 'Google Room',
+                      'pythonanywhere': 'PythonAnywhere Room',
+                      'a4': 'Room A4',
+                      'room_b_terrace': 'Room B Terrace',
+                      'c1': 'Room C1'}
