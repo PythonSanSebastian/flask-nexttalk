@@ -47,7 +47,7 @@
     {% if talks_list %}
 
     <!-- <h3>WHATS HAPPENING IN EUROPYTHON 2015</h3> -->
-    <div class="slides">
+    <div class="talks-slides">
       {% for track in talks_list %}
         {% for t in talks_list[track]["current"] %}
         <div>
@@ -85,11 +85,13 @@
     <div class="next-talk">
       <div>
         <h2>Upcoming talk</h2>
-        {#
-        {% for t in talks_list[track]["next"] %}
-        <p class="timestamps" data-time={{t.end}}>{{ t.end }}</p> <p>{{ t.title }} by {{ t.speakers }} ( {{ t.talk_type }} )</p>
-        {% endfor %}
-        #}
+
+        <div class="next-talks-slides">
+          {% for track in talks_list %}
+            {% for t in talks_list[track]["current"] %}
+              <p>{{ t.title }}</p>
+            {% endfor %}
+          {% endfor %}
         </div>
       </div>
 
@@ -108,19 +110,21 @@
 
     <script>
     $(function () {
-    $('.slider2').anyslider({
-    animation: 'fade',
-    interval: 3000,
-    reverse: true,
-    showControls: false,
-    startSlide: 2
-    });
-    $('.slider1').anyslider({
-    easing: 'easeOutBounce',
-    interval: 300,
-    keyboard: false,
-    speed: 1500
-    });
+      var current = $('.talks-slides').anyslider({
+        showControls: false,
+      }).data('anyslider');
+
+      var next = $('.next-talks-slides').anyslider({
+        showControls: false,
+      }).data('anyslider');
+
+      current.pause();
+      next.pause();
+
+      window.setInterval(function() {
+        current.next();
+        next.next();
+      }, 3000);
     });
     </script>
     </body>
