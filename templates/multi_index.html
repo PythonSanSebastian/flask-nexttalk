@@ -1,5 +1,6 @@
 <!DOCTYPE html> <html> <head><title>Talk Schedule</title>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.6/slick.css"/>
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <style>
         /* Space out content a bit */
         body { padding-top: 20px;
@@ -95,6 +96,7 @@
         return i;
     }
     </script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.6/slick.min.js"></script>
   </head>
 
 
@@ -116,53 +118,56 @@
 
         {% if talks_list %}
           <h3>WHATS HAPPENING IN EUROPYTHON 2015</h3>
-
+        <div class="slides">
         {% for track in talks_list %}
             {% for t in talks_list[track]["current"] %}
-                <h2>Current talk: Live until</h2>
-                <h2 class="timestamps" data-time={{t.end}}>{{ t.end }}</h2>
+          <div>
+            <h2>Current talk: Finish</h2>
+            <h2 class="timestamps" data-time={{t.end}}>{{ t.end }}</h2>
 
-                <section>
+            <section>
 
-                    <div class="wrap">
-                    <h1>{{ t.title }} ( {{ t.talk_type }} )</h1>
-                    </div>
+              <div class="wrap">
+                <h1>{{ t.title }} ( {{ t.talk_type }} )</h1>
+              </div>
 
-                <footer>
+              <footer>
                 <div class="room">
-                    <dl>
-                        <dt>Room</dt>
-                        <dd>{{ t.track_title }} </dd>
-                    </dl>
+                  <dl>
+                    <dt>Room</dt>
+                    <dd>{{ t.track_title }} </dd>
+                  </dl>
                 </div>
                 <div class="speaker">
-                    <dl>
-                        <dt>Speaker</dt>
-                        <dd>{{ t.speakers }}</dd>
-                    </dl>
+                  <dl>
+                    <dt>Speaker</dt>
+                    <dd>{{ t.speakers }}</dd>
+                  </dl>
                 </div>
-            </footer>
-            {% endfor %}
-        </section>
+              </footer>
+            </section>
 
             <footer>
-            <div class="next-talk">
+              <div class="next-talk">
                 <div>
-                     <h2>Upcoming talk</h2>
-                    {% for t in talks_list[track]["next"] %}
-                    <p class="timestamps" data-time={{t.end}}>{{ t.end }}</p> <p>{{ t.title }} by {{ t.speakers }} ( {{ t.talk_type }} )</p>
-                    {% endfor %}
+                  <h2>Upcoming talk</h2>
+                  {% for t in talks_list[track]["next"] %}
+                  <p class="timestamps" data-time={{t.end}}>{{ t.end }}</p> <p>{{ t.title }} by {{ t.speakers }} ( {{ t.talk_type }} )</p>
+                  {% endfor %}
                 </div>
-            </div>
+              </div>
 
-            <ul class="sponsors">
-                <li class="google"><img src="{{ url_for('static', filename='media/sponsors/google.png') }}"></li>
-                <li class="datarobot"><img src="{{ url_for('static', filename='media/sponsors/datarobot.png') }}"></li>
-                <li class="bilbao"><img src="{{ url_for('static', filename='media/sponsors/bilbao.png') }}"></li>
-                <li class="cloudmas"><img src="{{ url_for('static', filename='media/sponsors/cloudmas.png') }}"></li>
-            </ul>
-        </footer>
+              <!-- <ul class="sponsors"> -->
+              <!--   <li class="google"><img src="{{ url_for('static', filename='media/sponsors/google.png') }}"></li> -->
+              <!--   <li class="datarobot"><img src="{{ url_for('static', filename='media/sponsors/datarobot.png') }}"></li> -->
+              <!--   <li class="bilbao"><img src="{{ url_for('static', filename='media/sponsors/bilbao.png') }}"></li> -->
+              <!--   <li class="cloudmas"><img src="{{ url_for('static', filename='media/sponsors/cloudmas.png') }}"></li> -->
+              <!-- </ul> -->
+            </footer>
+          </div>
+            {% endfor %}
         {% endfor %}
+        </div>
         {% endif %}
 
 
