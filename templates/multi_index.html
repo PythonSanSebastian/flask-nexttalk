@@ -1,5 +1,6 @@
 <!DOCTYPE html> <html> <head><title>Talk Schedule</title>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.6/slick.css"/>
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <style>
         /* Space out content a bit */
         body { padding-top: 20px;
@@ -95,6 +96,7 @@
         return i;
     }
     </script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.6/slick.min.js"></script>
   </head>
 
 
@@ -114,119 +116,66 @@
           <p id="date">Date:  </p>
       </div>-->
 
-        <section>
+        {% if talks_list %}
+          <h3>WHATS HAPPENING IN EUROPYTHON 2015</h3>
+        <div class="slides">
+        {% for track in talks_list %}
+            {% for t in talks_list[track]["current"] %}
+          <div>
+            <h2>Current talk: Finish</h2>
+            <h2 class="timestamps" data-time={{t.end}}>{{ t.end }}</h2>
 
-            <h2>Current talk: Live {{momentjs(timestamp).from_now()}}</h2>
+            <section>
 
-            <div class="wrap">
-                {% if next_talk[0] %}
-                    <h1>{{ next_talk[0].title }}</h1>
-                {% else %}
-                    <h1>There is no actual talk, see when its going to be the next one...</h1>
-                {% endif %}
-            </div>
+              <div class="wrap">
+                <h1>{{ t.title }} ( {{ t.talk_type }} )</h1>
+              </div>
 
-            <footer>
+              <footer>
                 <div class="room">
-                    <dl>
-                        <dt>Room</dt>
-                        <dd>{{ room_name }} </dd>
-                    </dl>
+                  <dl>
+                    <dt>Room</dt>
+                    <dd>{{ t.track_title }} </dd>
+                  </dl>
                 </div>
                 <div class="speaker">
-                    <dl>
-                        <dt>Speaker</dt>
-                        {% if next_talk[0] %}
-                        <dd>{{ next_talk[0].speakers }}</dd>
-                        {% else %}
-                        <dd> No Speaker</dd>
-                        {% endif %}
-                    </dl>
+                  <dl>
+                    <dt>Speaker</dt>
+                    <dd>{{ t.speakers }}</dd>
+                  </dl>
                 </div>
-            </footer>
+              </footer>
+            </section>
 
-        </section>
-
-        <footer>
-            <div class="next-talk">
+            <footer>
+              <div class="next-talk">
                 <div>
-                     <h2>Upcoming talk</h2>
-                    {% if talks %}
-                       {% for t in talks %}
-                    <p class="timestamps" data-time={{t.end}}>{{ t.end }}</p> <p>{{ t.title }} by {{ t.speakers }} ( {{ t.talk_type }} )</p>
-                        {% endfor %}
-                    {% else %}
-                    <h1>No next talks in the next hours... come tomorrow.</h1>
-                    {% endif %}
+                  <h2>Upcoming talk</h2>
+                  {% for t in talks_list[track]["next"] %}
+                  <p class="timestamps" data-time={{t.end}}>{{ t.end }}</p> <p>{{ t.title }} by {{ t.speakers }} ( {{ t.talk_type }} )</p>
+                  {% endfor %}
                 </div>
-            </div>
+              </div>
 
-            <ul class="sponsors">
-                <li class="google"><img src="{{ url_for('static', filename='media/sponsors/google.png') }}"></li>
-                <li class="datarobot"><img src="{{ url_for('static', filename='media/sponsors/datarobot.png') }}"></li>
-                <li class="bilbao"><img src="{{ url_for('static', filename='media/sponsors/bilbao.png') }}"></li>
-                <li class="cloudmas"><img src="{{ url_for('static', filename='media/sponsors/cloudmas.png') }}"></li>
-            </ul>
-        </footer>
-
-
-     {# <div class="container">
-          <div class="header">
-        <!-- <h3 class="text-muted">EuroPython 2015</h3> -->
-              <img src="/static/media/ep_logo.png" height="100" ></img>
-              <h3 class="text-muted">INFORMATION</h3>
+              <!-- <ul class="sponsors"> -->
+              <!--   <li class="google"><img src="{{ url_for('static', filename='media/sponsors/google.png') }}"></li> -->
+              <!--   <li class="datarobot"><img src="{{ url_for('static', filename='media/sponsors/datarobot.png') }}"></li> -->
+              <!--   <li class="bilbao"><img src="{{ url_for('static', filename='media/sponsors/bilbao.png') }}"></li> -->
+              <!--   <li class="cloudmas"><img src="{{ url_for('static', filename='media/sponsors/cloudmas.png') }}"></li> -->
+              <!-- </ul> -->
+            </footer>
           </div>
+            {% endfor %}
+        {% endfor %}
+        </div>
+        {% endif %}
 
 
 
-          {% if talks_list %}
-          <h3>WHATS HAPPENING IN EUROPYTHON 2015</h3>
-          <table>
-              <thead>
-              <tr>
-                    <th>Track</th>
-                    <th>Talk title</th>
-                    <th>Speakers</th>
-                    <th>Talk type</th>
-                    <th>Finish</th>
-              </tr>
-              </thead>
 
-              <tbody>
-              {% for track in talks_list %}
-              {% for t in talks_list[track]["current"] %}
 
-              <tr>
-                  <th>{{ t.track_title }}</th>
-                  <th>{{ t.title }}</th>
-                  <th>{{ t.speakers }}</th>
-                  <th>{{ t.talk_type }}</th>
-                  <th class="timestamps" data-time={{t.end}}>{{ t.end }}</th>
-              </tr>
-              {% endfor %}
-              {% endfor %}
-              </tbody>
-          </table>
-          {% endif %}
 
-          <div class="footer">
-              <div class=".col-xs-6 .col-sm-3">
-                  <img src="/static/media/sponsors/brandsite_c.png" height="30"></img>
-              </div>
-              <div class=".col-xs-6 .col-sm-3">
-                  <img src="/static/media/sponsors/Bilbao web.jpg" height="30"></img>
-              </div>
-              <div class=".col-xs-6 .col-sm-3">
-                  <img src="/static/media/sponsors/DataRobot Logo Vector.png" height="30"></img>
-              </div>
-              <div class=".col-xs-6 .col-sm-3">
-                  <img src="/static/media/sponsors/CloudMas Logo Grande (raster).png" height="30"></img>
-              </div>
-        <p>&copy; Asociación de ciencias de la programación Python San Sebastián | www.pyss.org | <a href="/menu/">menu</a></p>
 
-      </div>
-    </div> <!-- /container -->
-#}
       <!-- we should put this iframe somehow -->
      <!-- <iframe src="http://smartfeedz.com/livepage/demo/live/europython-2/?token=5da16b3711df7a7447420a02b34f0b4a2e9df684#/projectorm"  height="200"></iframe> -->
 
@@ -249,5 +198,3 @@
     </script>
   </body>
 </html>
-
-
