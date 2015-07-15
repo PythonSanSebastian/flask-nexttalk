@@ -71,6 +71,7 @@
    <script src="/static/jquery-2.1.4.min.js"></script>
     <script src="/static/jquery.anyslider.js"></script>
     <script src="/static/jquery.easing.1.3.js"></script>
+    <script src="/static/time_handling.js"></script>
 
     <link rel="stylesheet" href="/static/jquery-anyslider.css"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
@@ -159,7 +160,7 @@
                     <th>Talk title</th>
                     <th>Speakers</th>
                     <th>Talk type</th>
-                    <th>Timing</th>
+                    <th>Finish</th>
               </tr>
 
               {% for track in talks_list %}
@@ -169,7 +170,7 @@
                   <th>{{ t.title }}</th>
                   <th>{{ t.speakers }}</th>
                   <th>{{ t.talk_type }}</th>
-                  <th> "testing"    </th>
+                  <th class="timestamps" data-time={{t.end}}>{{ t.end }}</th>
               </tr>
               {% endfor %}
               {% endfor %}

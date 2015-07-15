@@ -77,6 +77,8 @@ class Talks(object):
                     start, end = v.get('timerange').split(",")
                     talk_start = datetime.strptime(start.strip(), '%Y-%m-%d %H:%M:%S')
                     talk_end = datetime.strptime(end.strip(), '%Y-%m-%d %H:%M:%S')
+                    v['start'] = talk_start
+                    v['end'] = talk_end
                     next_timeframe = talk_end + timedelta(hours=1.5)
 
                     if talk_start <= time_obj <= talk_end:
@@ -91,7 +93,8 @@ class Talks(object):
     def get_current(self, time_obj):
         cur = []
         for key, talk in self.filter_talks_by_room(time_obj).items():
-            cur.append(talk)
+            if talk['current']:
+                cur.append(talk['current'])
         return cur
 
     def get_one_room(self, room, time_obj):
