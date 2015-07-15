@@ -112,10 +112,14 @@
     $(function () {
       var current = $('.talks-slides').anyslider({
         showControls: false,
+        pauseOnHover: false,
+        showBullets: false,
       }).data('anyslider');
 
       var next = $('.next-talks-slides').anyslider({
         showControls: false,
+        pauseOnHover: false,
+        showBullets: false,
       }).data('anyslider');
 
       current.pause();
