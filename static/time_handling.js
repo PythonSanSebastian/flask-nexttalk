@@ -13,12 +13,12 @@ $(document).ready(function(){
     replaceTimeStamps();
     setInterval(replaceTimeStamps, 10000)
 
-    $(".slides").slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        arrows: true,
-        autoplaySpeed: 2000,
-    });
+    // $(".slides").slick({
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     autoplay: true,
+    //     arrows: true,
+    //     autoplaySpeed: 2000,
+    // });
 });
 
