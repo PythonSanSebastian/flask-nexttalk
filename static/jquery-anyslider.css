@@ -94,20 +94,6 @@ section {
     width: 80%;
 }
 
-h1 {
-    font-size: 20px;
-    margin: 10px 0;
-}
-
-p {
-    margin: 10px 0;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-}
-
 .slider-wrapper {
     height: 275px;
     position: relative;

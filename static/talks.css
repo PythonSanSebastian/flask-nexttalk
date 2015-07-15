@@ -285,3 +285,8 @@ footer ul .google img {
     position: relative;
     top: .3vh;
 }
+
+
+.slides button {
+    display: none!important;
+}
