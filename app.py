@@ -42,11 +42,8 @@ def index():
     pprint.pprint(cur)
     # Render template with a test timestamp
     print(datetime.now().replace(minute=0))
-    return render_template('index.html',
-                           room_name = "HALL",
+    return render_template('multi_index.html',
                            timestamp=naive,
-                           next_talk="next",
-                           talks=["talks1", "talks2"],
                            talks_list=rooms)
 
 @app.route('/menu/')
