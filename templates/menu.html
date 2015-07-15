@@ -8,11 +8,13 @@
 
 <h1>Available rooms: </h1>
 {% for i in options %}
+
 {% if "Hall" in i %}
-    <a href="/"> {{ i }}</a> <br>
+    <a href="/hall"> {{ i }}</a> <br>
 {% else %}
     <a href="/room/{{ i }}"> {{ i }}</a> <br>
 {% endif %}
+
 {% endfor %}
 </body>
 </html>

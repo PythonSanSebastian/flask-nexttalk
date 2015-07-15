@@ -95,35 +95,35 @@
   </head>
   <body onload="startTime()">
       <div class="sidebar" >
-          <h4 id="time"> Time: {{momentjs(timestamp).format('HH:mm:ss')}} </h4>
-          <p id="date">Date: {{momentjs(timestamp).format('YYYY-MM-DD')}} </p>
+          <h4 id="time"> Time:  </h4>
+          <p id="date">Date: </p>
       </div>
       <div class="container">
           <div class="header">
         <!-- <h3 class="text-muted">EuroPython 2015</h3> -->
               <img src="/static/media/ep_logo.png" height="100" ></img>
-              <h3 class="text-muted">{{ room_name }} INFORMATION</h3>
+              <h3 class="text-muted">HALL INFORMATION</h3>
           </div>
 
           <div class="row marketing">
 
                 <div class="col-lg-12">
                   <!-- Render formated time -->
-                  <h3>NOW IN {{ room_name }}:</h3>
-                    {% if next_talk[0] %}
-                    {{ next_talk[0].talk_type }} : {{momentjs(timestamp).from_now()}}
-                    {{ next_talk[0].title }} by
-                    {{ next_talk[0].speakers }}
+                  <h3>NOW IN HAPPENING IN THE HALL:</h3>
+                    {% if now_happening[0] %}
+                    {{ now_happening[0].talk_type }} : {{momentjs(timestamp).from_now()}}
+                    {{ now_happening[0].title }} by
+                    {{ now_happening[0].speakers }}
                     {% else %}
                     There is no actual talk, see when its going to be the next one...
                     {% endif %}
                 </div>
 
                 <div  class="col-lg-12">
-                    <h3>NEXT:</h3>
+                    <h3>WILL HAPPEN IN THE HALL:</h3>
 
-                {% if talks %}
-                {% for t in talks %}
+                {% if will_happen %}
+                {% for t in will_happen %}
                     <p> {{ t.talk_type }} :
                      {{ t.title }}  by
                       {{ t.speakers }} </p>
@@ -136,21 +136,6 @@
                 </div>
 
           </div>
-
-         {# <div class="slider-wrapper">
-                <div class="slider slider1">
-                    <div>
-                        Barria Room<br>
-                        Talk
-                    </div>
-                    <div>
-                        Python Anywhere Room <br>
-                        Talk
-                    </div>
-                </div>
-          </div>
-          #}
-
           {% if talks_list %}
           <h3>WHATS HAPPENING IN EUROPYTHON 2015</h3>
           <table>
@@ -220,6 +205,3 @@
     </script>
   </body>
 </html>
-
-
-

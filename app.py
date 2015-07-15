@@ -59,7 +59,38 @@ def menu():
 
 @app.route('/room/<track>')
 def room_info(track):
+    if "Hall" in track:
+        return render_hall(track)
     return render_room(track)
+
+@app.route('/hall')
+def render_hall():
+    pytz.timezone("Europe/Madrid")
+    naive = datetime.now().replace(minute=50)
+
+    talks = Talks()
+
+    rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+
+    print rooms.keys()
+    actual = rooms.pop("Exhibition Hall / Helpdesk ")
+
+    other = random_talks(rooms)
+
+    print(datetime.now().replace(minute=0))
+    return render_template('hall.html',
+                           now_happening=actual["current"],
+                           will_happen=actual["next"],
+                           talks_list=other)
+
+def random_talks(talks):
+    ts = []
+    for k in talks.keys():
+        actual = talks.pop(k)
+        ts.append(actual["current"])
+        ts.append(actual["next"])
+    import random
+    return random.sample(ts, 10)
 
 
 def render_room(room):
