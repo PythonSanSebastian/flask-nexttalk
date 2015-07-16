@@ -9,9 +9,11 @@ function replaceTimeStamps(){
     });
 };
 
+
+
 $(document).ready(function(){
     replaceTimeStamps();
-    setInterval(replaceTimeStamps, 10000)
+    setInterval(replaceTimeStamps, 10000);
 
     $(".slides").slick({
         slidesToShow: 1,
