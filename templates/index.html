@@ -117,8 +117,9 @@
         <section>
 
             <h2 style="display:inline" >Current Talk: </h2>
+            {% if next_talk[0] %}
             <h2 class="timestamps" data-time={{next_talk[0].start}} style="display:inline" >{{ next_talk[0].start }}</h2>
-
+            {% endif %}
             <div class="wrap">
                 {% if next_talk[0] %}
                     <h1>{{ next_talk[0].title }}</h1>

@@ -70,13 +70,13 @@ def render_room(room):
     actual = rooms.pop(room)
     other = rooms
 
-
+    #next_talks = sorted(actual["next"], key=getattr('start'))
     print(datetime.now().replace(minute=0))
     return render_template('index.html',
                            room_name = room,
                            timestamp=naive,
                            next_talk=actual["current"],
-                           talks=actual["next"],
+                           talks= actual["next"],
                            talks_list=other)
 
 
