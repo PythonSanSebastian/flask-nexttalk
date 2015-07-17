@@ -28,8 +28,10 @@
                 style: {
                         width: promoted() ? $parent.postStyle.width * $parent.cols + 'px': $parent.postStyle.width + 'px',
                         height: promoted() ? $parent.postStyle.height * 2 + 'px' : $parent.postStyle.height + 'px',
-                        left: promoted() ? 0 : $parent.postStyle.width * col() + 'px',
-                        top: promoted() ? $parent.postStyle.height + 'px' : $parent.postStyle.height * row() + 'px',
+                        '-webkit-transform': 'translate(' +
+                            (promoted() ? 0 : $parent.postStyle.width * col() + 'px') + ', ' +
+                            (promoted() ? $parent.postStyle.height + 'px' : $parent.postStyle.height * row() + 'px')
+                        + ')'
                     }
                 ">
                 <div
@@ -41,7 +43,7 @@
                     <div class="post-wrap twitter text">
                         <div class="body">
                             <div class="branding">
-                                <img src="{{ static_url }}projector_lite/feed/img/twitter-logo.png"  alt="" />
+                                <img src="{{ static_url }}projector_lite/feed/img/twitter-logo.png" alt="" />
                             </div>
                             <div class="text" data-bind="html: text"></div>
                         </div>
@@ -122,11 +124,23 @@
                         </div>
                     </div>
                     <!-- /ko -->
+                    
+                    <!-- ko if: type === 'logo' -->
+                    <div class="post-wrap logo image">
+                        <div class="image">
+                            <img alt="" src="{{ static_url }}projector_lite/feed/img/smartfeedz-logo.png" />
+                        </div>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
         </div>
         
-        <div class="footer">
+        <div
+            class="footer"
+            data-bind="
+                style: {padding: padding + slidePadding + 'px'}
+            ">
             <div class="wrap">
                 <img id="logo" src="{{ static_url }}projector_lite/feed/img/ep-logo.png" alt="" />
                 <img id="spyhce-logo" src="{{ static_url }}projector_lite/feed/img/spyhce-logo.png" alt="" />
@@ -152,26 +166,25 @@
             SLIDE_PADDING: 10,
             SCREEN_PADDING: 20,
             
-            SLIDE_SIZE_CONFIG: '330-150-10-20',
+            SLIDE_SIZE_CONFIG: '315-150-5-5',
             
-            SCREEN_BOTTOM_SPACING: 270,
+            SCREEN_BOTTOM_SPACING: 220,
             
             PROJECTOR_SLIDES_LIMIT: 100,
 
             LIVE_FEED_API_URI: '{{ feed_url }}harvester/data/?event={{ event }}&format=json&limit=100',
             LIVE_API_TOKEN: '{{token}}',
 
-            OG_IMAGE_API_URI: '{{ feed_url }}/livepage/ogimage/%url%',
-
-            REFRESH_INTERVAL: 5000,
-            PROMOTE_INTERVAL: 3000,
-            PROMOTE_DURATION: 1000,
-            MIN_SLIDES_FOR_PROMOTE: 4,
+            REFRESH_INTERVAL: 15000,
+            PROMOTE_INTERVAL: 11000,
+            PROMOTE_DURATION: 6000,
 
             DEFAULT_WEIGHT: 1000,
-            RESERVED_ITEM_WEIGHT: 100,
             PROMOTED_WEIGHT_DECREASE: 300,
             MINIMUM_WEIGHT: 100,
+            
+            LOGO_INTERVAL: 30000,
+            LOGO_DURATION: 12000,
 
             MIN_POSTS_FOR_COUNTER: 5
         };
@@ -179,4 +192,3 @@
         <script src="{{ static_url }}projector_lite/js/bundle.js"></script>
     </body>
 </html>
-
