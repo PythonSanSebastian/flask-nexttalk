@@ -37,11 +37,11 @@ def index():
     rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
 
     cur = talks.get_current(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
-    import pprint
-    #pprint.pprint(rooms)
-    pprint.pprint(cur)
+    # import pprint
+    # #pprint.pprint(rooms)
+    # pprint.pprint(cur)
     # Render template with a test timestamp
-    print(datetime.now().replace(minute=0))
+    # print(datetime.now().replace(minute=0))
     return render_template('multi_index.html',
                            timestamp=naive,
                            talks_list=rooms)
