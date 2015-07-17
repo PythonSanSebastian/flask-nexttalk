@@ -290,3 +290,11 @@ footer ul .google img {
 .slides button {
     display: none!important;
 }
+
+.container{
+    width: 50%;
+    float:left;
+}
+.clear{
+    clear: both;
+}

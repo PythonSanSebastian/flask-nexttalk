@@ -46,6 +46,14 @@ def index():
                            timestamp=naive,
                            talks_list=rooms)
 
+@app.route('/feeds')
+def feeds():
+    return render_template('feeds.html',
+                           event='europython',
+                           feed_url='http://www.smartfeedz.com/',
+                           static_url="http://www.smartfeedz.com/static/",
+                           feed_source='http://www.smartfeedz.com/livepage/live-lite/europython/')
+
 @app.route('/menu/')
 def menu():
     talks = Talks()

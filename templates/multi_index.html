@@ -43,7 +43,7 @@
         <time id="time">{{momentjs(timestamp).format('HH:mm:ss')}}</time>
         {# {{momentjs(timestamp).format('YYYY-MM-DD')}} #}
     </header>
-
+    <div class="container">
     {% if talks_list %}
 
     <!-- <h3>WHATS HAPPENING IN EUROPYTHON 2015</h3> -->
@@ -80,7 +80,11 @@
       {% endfor %}
     </div>
     {% endif %}
-
+    </div>
+    <div class="container" style="height: 77%">
+        <iframe src="/feeds" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+    <div class="clear"></div>
     <footer>
     <div class="next-talk">
       <div>
