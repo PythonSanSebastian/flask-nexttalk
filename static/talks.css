@@ -201,13 +201,10 @@ section .room:before {
 
 section .speaker:before {
     content: '';
-    display: block;
-    float: left;
+    display: inline-block;
 
     height: 5rem;
     width: 6rem;
-
-    margin-left: 3vw;
 
     background: url(media/speaker.png) no-repeat center;
     background-size: contain;
