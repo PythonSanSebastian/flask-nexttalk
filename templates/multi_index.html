@@ -39,9 +39,11 @@
     <header>
       <h1>Logo</h1>
         <div id="time-container">
-          <time id="time">
-              {{momentjs(timestamp).format('HH:mm:ss')}}
-          </time>
+          <div class="wrapper">
+            <time id="time">
+                {{momentjs(timestamp).format('HH:mm:ss')}}
+            </time>
+          </div>
         </div>
         {# {{momentjs(timestamp).format('YYYY-MM-DD')}} #}
     </header>
