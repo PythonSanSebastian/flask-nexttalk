@@ -40,7 +40,11 @@
   <body onload="startTime()">
     <header>
       <h1>Logo</h1>
-        <time id="time">{{momentjs(timestamp).format('HH:mm:ss')}}</time>
+        <div id="time-container">
+          <time id="time">
+              {{momentjs(timestamp).format('HH:mm:ss')}}
+          </time>
+        </div>
         {# {{momentjs(timestamp).format('YYYY-MM-DD')}} #}
     </header>
     <div class="container">
@@ -61,18 +65,21 @@
             </div>
 
             <footer>
-            <div class="room">
-            <dl>
-            <dt>Room</dt>
-            <dd>{{ t.track_title }} </dd>
-            </dl>
-            </div>
-            <div class="speaker">
-            <dl>
-            <dt>Speaker</dt>
-            <dd>{{ t.speakers }}</dd>
-            </dl>
-            </div>
+              <div>
+                <div class="room">
+                  <dl>
+                    <dt>Room</dt>
+                    <dd>{{ t.track_title }} </dd>
+                  </dl>
+                </div>
+
+                <div class="speaker">
+                  <dl>
+                    <dt>Speaker</dt>
+                    <dd>{{ t.speakers }}</dd>
+                  </dl>
+                </div>
+              </div>
             </footer>
           </section>
         </div>
@@ -86,26 +93,30 @@
     </div>
     <div class="clear"></div>
     <footer>
-    <div class="next-talk">
-      <div>
-        <h2>Upcoming talk</h2>
+      <div class="next-talk">
+        <div id="next-talk-container">
+          <div>
+            <h2>Upcoming talk</h2>
 
-        <div class="next-talks-slides">
-          {% for track in talks_list %}
-            {% for t in talks_list[track]["current"] %}
-              <p>{{ t.title }}</p>
-            {% endfor %}
-          {% endfor %}
+            <div class="next-talks-slides">
+              {% for track in talks_list %}
+                {% for t in talks_list[track]["current"] %}
+                  <p>{{ t.title }}</p>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
 
-      <ul class="sponsors">
-        <li class="google"><img src="{{ url_for('static', filename='media/sponsors/google.png') }}"></li>
-        <li class="datarobot"><img src="{{ url_for('static', filename='media/sponsors/datarobot.png') }}"></li>
-        <li class="bilbao"><img src="{{ url_for('static', filename='media/sponsors/bilbao.png') }}"></li>
-        <li class="cloudmas"><img src="{{ url_for('static', filename='media/sponsors/cloudmas.png') }}"></li>
-      </ul>
-    </div>
+      <div id="sponsors-container">
+        <ul class="sponsors">
+          <li class="google"><img src="{{ url_for('static', filename='media/sponsors/google.png') }}"></li>
+          <li class="datarobot"><img src="{{ url_for('static', filename='media/sponsors/datarobot.png') }}"></li>
+          <li class="bilbao"><img src="{{ url_for('static', filename='media/sponsors/bilbao.png') }}"></li>
+          <li class="cloudmas"><img src="{{ url_for('static', filename='media/sponsors/cloudmas.png') }}"></li>
+        </ul>
+      </div>
     </footer>
 
 
