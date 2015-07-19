@@ -160,8 +160,8 @@ section footer > div {
 
 section footer > div > div {
     display: inline-block;
-    -ms-text-align-last: auto;
     text-align: left;
+    vertical-align: top;
 }
 
 section dl {
@@ -201,7 +201,8 @@ section .room:before {
 
 section .speaker:before {
     content: '';
-    display: inline-block;
+    display: block;
+    float: left;
 
     height: 5rem;
     width: 6rem;
