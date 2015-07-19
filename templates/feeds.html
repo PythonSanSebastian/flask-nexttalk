@@ -15,6 +15,7 @@
             attr: {class: 'promoting-' + promoting()},
             style: {padding: padding + 'px'}
         ">
+    <style> .posts .post .inner .post-wrap { zoom: 1.1; } </style>
         <div
             data-bind="foreach: posts"
             class="posts"
@@ -31,7 +32,8 @@
                         '-webkit-transform': 'translate(' +
                             (promoted() ? 0 : $parent.postStyle.width * col() + 'px') + ', ' +
                             (promoted() ? $parent.postStyle.height + 'px' : $parent.postStyle.height * row() + 'px')
-                        + ')'
+                        + ')',
+
                     }
                 ">
                 <div
@@ -161,8 +163,8 @@
         
         <script>
         window.config = {
-            SLIDE_WIDTH: 330,
-            SLIDE_HEIGHT: 150,
+            SLIDE_WIDTH: 300,
+            SLIDE_HEIGHT: 120,
             SLIDE_PADDING: 10,
             SCREEN_PADDING: 20,
             
@@ -170,9 +172,9 @@
             
             SCREEN_BOTTOM_SPACING: 220,
             
-            PROJECTOR_SLIDES_LIMIT: 100,
+            PROJECTOR_SLIDES_LIMIT: 30,
 
-            LIVE_FEED_API_URI: '{{ feed_url }}harvester/data/?event={{ event }}&format=json&limit=100',
+            LIVE_FEED_API_URI: '{{ feed_url }}harvester/data/?event={{ event }}&format=json&limit=30',
             LIVE_API_TOKEN: '{{token}}',
 
             REFRESH_INTERVAL: 15000,
