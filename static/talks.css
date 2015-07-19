@@ -256,8 +256,9 @@ footer .next-talk h1 {
     font-size: 1.4rem;
 }
 
-footer .sponsors {
+footer #sponsors-container {
     width: 40%;
+    height: 100%;
 
     position: absolute;
     top: 0;
@@ -265,14 +266,20 @@ footer .sponsors {
     right: 0;
 
     background: #e55d34;
+
+    display: table;
 }
 
 footer ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 
     list-style: none;
+}
+
+footer ul li {
+    display: inline-block;
 }
 
 footer ul img {
