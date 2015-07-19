@@ -244,6 +244,7 @@ body > footer {
 footer .next-talk {
     height: 100%;
     width: 60%;
+    overflow: hidden;
 }
 
 footer .next-talk p, footer .next-talk h2 {
@@ -253,11 +254,17 @@ footer .next-talk p, footer .next-talk h2 {
 #next-talk-container {
     display: table;
     height: 100%;
+    width: 100%;
 }
 
 #next-talk-container > div {
     display: table-cell;
     vertical-align: middle;
+    width: 100%;
+}
+
+.next-talks-slides {
+    width: 100%;
 }
 
 footer .next-talk h2 {
