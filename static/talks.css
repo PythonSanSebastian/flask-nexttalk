@@ -82,30 +82,41 @@ header h1 {
     background-size: auto 60%;
 }
 
-header time {
+header #time-container {
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     width: 30%;
 
     font-size: 4rem;
+
+    display: table;
+    height: 100%;
+    text-align: center;
+}
+
+header #time-container time {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 header time:before {
     content: '';
     display: inline-block;
 
-    height: 30%;
-    width: 20%;
+    height: 5vh;
+    width: 5vh;
 
     background: url(media/hour.png) no-repeat center;
     background-size: contain;
+    vertical-align: baseline;
+
+    position: relative;
+    top: 1vh;
+
+    margin-right: .5vh;
 }
 
 section {
@@ -134,13 +145,23 @@ section .wrap {
 section footer {
     width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     position: absolute;
     bottom: 3vh;
     height: 10vh;
+
+    display: table;
+}
+
+section footer > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+section footer > div > div {
+    display: inline-block;
+    -ms-text-align-last: auto;
+    text-align: left;
 }
 
 section dl {
@@ -221,13 +242,22 @@ body > footer {
 }
 
 footer .next-talk {
-    padding: 0 0 0 3%;
-
-    display: flex;
-    align-items: center;
-    justify-content: start;
-
     height: 100%;
+    width: 60%;
+}
+
+footer .next-talk p, footer .next-talk h2 {
+    padding: 0 0 0 4vh;
+}
+
+#next-talk-container {
+    display: table;
+    height: 100%;
+}
+
+#next-talk-container > div {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 footer .next-talk h2 {
@@ -245,8 +275,9 @@ footer .next-talk h1 {
     font-size: 1.4rem;
 }
 
-footer .sponsors {
+footer #sponsors-container {
     width: 40%;
+    height: 100%;
 
     position: absolute;
     top: 0;
@@ -254,14 +285,20 @@ footer .sponsors {
     right: 0;
 
     background: #e55d34;
+
+    display: table;
 }
 
 footer ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 
     list-style: none;
+}
+
+footer ul li {
+    display: inline-block;
 }
 
 footer ul img {
