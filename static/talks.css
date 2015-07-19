@@ -290,8 +290,12 @@ footer #sponsors-container {
     right: 0;
 
     background: #e55d34;
+}
 
+footer #sponsors-container .wrapper {
     display: table;
+    width: 100%;
+    height: 100%;
 }
 
 footer ul {
