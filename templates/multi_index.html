@@ -48,56 +48,49 @@
         {# {{momentjs(timestamp).format('YYYY-MM-DD')}} #}
     </header>
     <div class="container">
-    {% if not empty %}
-
-    <!-- <h3>WHATS HAPPENING IN EUROPYTHON 2015</h3> -->
-        <div class="talks-slides">
-      {% for track in talks_list %}
-        {% for t in talks_list[track]["current"] %}
-        <div>
-<!--           <h2>Current talk: Finish</h2>
-          <h2 class="timestamps" data-time={{t.end}}>{{ t.end }}</h2>
- -->
-          <section>
-
-            <div class="wrap">
-            <h1 style="display:inline" > {{t.start_hour}}</h1><h1 style="display:inline" > : {{ t.title }} ({{ t.talk_type }})</h1>
-            </div>
-
-            <footer>
-              <div>
-                <div class="room">
-                  <dl>
-                    <dt>Room</dt>
-                    <dd>{{ t.track_title }} </dd>
-                  </dl>
-                </div>
-
-                <div class="speaker">
-                  <dl>
-                    <dt>Speaker</dt>
-                    <dd>{{ t.speakers }}</dd>
-                  </dl>
-                </div>
+      <div class="talks-slides">
+      {% if not empty %}
+        {% for track in talks_list %}
+          {% for t in talks_list[track]["current"] %}
+          <div>
+            <section>
+              <div class="wrap">
+                <h1 style="display:inline" >{{t.start_hour}}</h1> <h1 style="display:inline" >: {{ t.title }} ({{ t.talk_type }})</h1>
               </div>
-            </footer>
+
+              <footer>
+                <div>
+                  <div class="room">
+                    <dl>
+                      <dt>Room</dt>
+                      <dd>{{ t.track_title }} </dd>
+                    </dl>
+                  </div>
+
+                  <div class="speaker">
+                    <dl>
+                      <dt>Speaker</dt>
+                      <dd>{{ t.speakers }}</dd>
+                    </dl>
+                  </div>
+                </div>
+              </footer>
+            </section>
+          </div>
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        <div>
+          <section>
+            <div class="wrap">
+              <h1 style="display:inline" >No talks at this time</h1>
+            </div>
           </section>
         </div>
-        {% endfor %}
-      {% endfor %}
-
+      {% endif %}
+      </div>
     </div>
-        {% else %}
-        <div>
-            <section>
-                <div class="wrap">
-                    <h1 style="display:inline" >No talks at this time</h1>
-                </div>
 
-            </section>
-        </div>
-        {% endif %}
-    </div>
     <div class="container" style="height: 77%">
         <iframe src="/feeds" width="100%" height="100%" frameborder="0"></iframe>
     </div>
