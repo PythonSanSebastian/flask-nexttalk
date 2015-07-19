@@ -48,10 +48,10 @@
         {# {{momentjs(timestamp).format('YYYY-MM-DD')}} #}
     </header>
     <div class="container">
-    {% if talks_list %}
+    {% if not empty %}
 
     <!-- <h3>WHATS HAPPENING IN EUROPYTHON 2015</h3> -->
-    <div class="talks-slides">
+        <div class="talks-slides">
       {% for track in talks_list %}
         {% for t in talks_list[track]["current"] %}
         <div>
@@ -85,8 +85,18 @@
         </div>
         {% endfor %}
       {% endfor %}
+
     </div>
-    {% endif %}
+        {% else %}
+        <div>
+            <section>
+                <div class="wrap">
+                    <h1 style="display:inline" >No talks at this time</h1>
+                </div>
+
+            </section>
+        </div>
+        {% endif %}
     </div>
     <div class="container" style="height: 77%">
         <iframe src="/feeds" width="100%" height="100%" frameborder="0"></iframe>
@@ -96,6 +106,7 @@
       <div class="next-talk">
         <div id="next-talk-container">
           <div>
+          {% if not empty %}
             <h2>Upcoming talk</h2>
 
             <div class="next-talks-slides">
@@ -105,6 +116,7 @@
                 {% endfor %}
               {% endfor %}
             </div>
+            {% endif %}
           </div>
         </div>
       </div>

@@ -34,7 +34,11 @@ def index():
     #print current
     #print next_t
 
-    rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    #rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+
+    rooms = talks.filter_talks_by_room(datetime.now())
+
+    empty = all([len(rooms[key]['current']) == 0 for key in rooms.keys()])
 
     cur = talks.get_current(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
     # import pprint
@@ -44,6 +48,7 @@ def index():
     # print(datetime.now().replace(minute=0))
     return render_template('multi_index.html',
                            timestamp=naive,
+                           empty=empty,
                            talks_list=rooms)
 
 @app.route('/feeds')
@@ -57,7 +62,9 @@ def feeds():
 @app.route('/menu/')
 def menu():
     talks = Talks()
-    rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    #rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    rooms = talks.filter_talks_by_room(datetime.now())
+
     return render_template('menu.html',
                            options = rooms.keys() )
 
@@ -106,7 +113,8 @@ def render_room(room):
 
     talks = Talks()
 
-    rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    #rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    rooms = talks.filter_talks_by_room(datetime.now())
 
     actual = rooms.pop(room)
     other = rooms
