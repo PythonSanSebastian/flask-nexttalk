@@ -40,7 +40,11 @@
   <body onload="startTime()">
     <header>
       <h1>Logo</h1>
-        <time id="time">{{momentjs(timestamp).format('HH:mm:ss')}}</time>
+        <div id="time-container">
+          <time id="time">
+              {{momentjs(timestamp).format('HH:mm:ss')}}
+          </time>
+        </div>
         {# {{momentjs(timestamp).format('YYYY-MM-DD')}} #}
     </header>
     <div class="container">

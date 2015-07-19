@@ -82,30 +82,41 @@ header h1 {
     background-size: auto 60%;
 }
 
-header time {
+header #time-container {
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     width: 30%;
 
     font-size: 4rem;
+
+    display: table;
+    height: 100%;
+    text-align: center;
+}
+
+header #time-container time {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 header time:before {
     content: '';
     display: inline-block;
 
-    height: 30%;
-    width: 20%;
+    height: 5vh;
+    width: 5vh;
 
     background: url(media/hour.png) no-repeat center;
     background-size: contain;
+    vertical-align: baseline;
+
+    position: relative;
+    top: 1vh;
+
+    margin-right: .5vh;
 }
 
 section {
