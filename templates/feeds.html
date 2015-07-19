@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>SmartFeedz | {{event}}</title>
+        
+        <link href="{{ static_url }}projector_lite/css/bundle.css" rel="stylesheet">
+    </head>
+
+    <body
+        data-bind="
+            attr: {class: 'promoting-' + promoting()},
+            style: {padding: padding + 'px'}
+        ">
+    <style> .posts .post .inner .post-wrap { zoom: 1.1; } </style>
+        <div
+            data-bind="foreach: posts"
+            class="posts"
+            >
+            <div data-bind="
+                attr: {class: 'post promoted-' + promoted() 
+                        + ' row-' + row()
+                        + ' col-' + col()
+                        + ' visible-' + (!hidden() || promoted())
+                      },
+                style: {
+                        width: promoted() ? $parent.postStyle.width * $parent.cols + 'px': $parent.postStyle.width + 'px',
+                        height: promoted() ? $parent.postStyle.height * 2 + 'px' : $parent.postStyle.height + 'px',
+                        '-webkit-transform': 'translate(' +
+                            (promoted() ? 0 : $parent.postStyle.width * col() + 'px') + ', ' +
+                            (promoted() ? $parent.postStyle.height + 'px' : $parent.postStyle.height * row() + 'px')
+                        + ')',
+
+                    }
+                ">
+                <div
+                    class="inner"
+                    data-bind="
+                        style: {padding: $parent.slidePadding + 'px'}
+                    ">
+                    <!-- ko if: type === 'twitter' -->
+                    <div class="post-wrap twitter text">
+                        <div class="body">
+                            <div class="branding">
+                                <img src="{{ static_url }}projector_lite/feed/img/twitter-logo.png" alt="" />
+                            </div>
+                            <div class="text" data-bind="html: text"></div>
+                        </div>
+                        <div class="when">
+                            <span data-bind="text: created_at"></span>
+                        </div>
+                        <div class="author">
+                            <img class="avatar" alt="" data-bind="attr: {src: profile_image_url}" />
+                            <div class="text">
+                                <div class="address" data-bind="text: '@' + author"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                        
+                    <!-- ko if: type === 'instagram' -->
+                    <div class="post-wrap instagram text-image">
+                        <div class="image">
+                            <img data-bind="attr: {src: image_link}" alt="" />
+                        </div>
+                        <div class="body">
+                            <div class="branding">
+                                <img src="{{ static_url }}projector_lite/feed/img/instagram-logo.png" alt="" />
+                            </div>
+                            <div class="text" data-bind="html: caption"></div>
+                        </div>
+                        <div class="when">
+                            <span data-bind="text: created_at"></span>
+                        </div>
+                        <div class="author">
+                            <img class="avatar" alt="" data-bind="attr: {src: profile_image_url}" />
+                            <div class="text">
+                                <div class="name" data-bind="text: author"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                        
+                    <!-- ko if: type === 'facebook_status' -->
+                    <div class="post-wrap facebook text">
+                        <div class="body">
+                            <div class="branding">
+                                <img src="{{ static_url }}projector_lite/feed/img/facebook-logo.png" alt="" />
+                            </div>
+                            <div class="text" data-bind="html: fb_message"></div>
+                        </div>
+                        <div class="when">
+                            <span data-bind="text: created_at"></span>
+                        </div>
+                        <div class="author">
+                            <img class="avatar" alt="" data-bind="attr: {src: author_profile_picture}" />
+                            <div class="text">
+                                <div class="address" data-bind="text: author_name"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    
+                    <!-- ko if: type === 'facebook_image' -->
+                    <div class="post-wrap facebook text-image">
+                        <div class="image">
+                            <img data-bind="attr: {src: fb_link}" alt="" />
+                        </div>
+                        <div class="body">
+                            <div class="branding">
+                                <img src="{{ static_url }}projector_lite/feed/img/facebook-logo.png" alt="" />
+                            </div>
+                            <div class="text" data-bind="html: fb_caption"></div>
+                        </div>
+                        <div class="when">
+                            <span data-bind="text: created_at"></span>
+                        </div>
+                        <div class="author">
+                            <img class="avatar" alt="" data-bind="attr: {src: author_profile_picture}" />
+                            <div class="text">
+                                <div class="name" data-bind="text: author_name"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    
+                    <!-- ko if: type === 'logo' -->
+                    <div class="post-wrap logo image">
+                        <div class="image">
+                            <img alt="" src="{{ static_url }}projector_lite/feed/img/smartfeedz-logo.png" />
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+        
+        <div
+            class="footer"
+            data-bind="
+                style: {padding: padding + slidePadding + 'px'}
+            ">
+            <div class="wrap">
+                <img id="logo" src="{{ static_url }}projector_lite/feed/img/ep-logo.png" alt="" />
+                <img id="spyhce-logo" src="{{ static_url }}projector_lite/feed/img/spyhce-logo.png" alt="" />
+                <div id="counters">
+                    <span data-bind="if: counts().twitter > MIN_POSTS_FOR_COUNTER">
+                        <img src="{{ static_url }}projector_lite/feed/img/twitter-logo.png" alt="" /> <span data-bind="text: counts().twitter"></span>
+                    </span>
+                    <span data-bind="if: counts().facebook > MIN_POSTS_FOR_COUNTER">
+                        <img src="{{ static_url }}projector_lite/feed/img/facebook-logo.png" alt="" /> <span data-bind="text: counts().facebook"></span>
+                    </span>
+                    <span data-bind="if: counts().instagram > MIN_POSTS_FOR_COUNTER">
+                        <img src="{{ static_url }}projector_lite/feed/img/instagram-logo.png" alt="" /> <span data-bind="text: counts().instagram"></span>
+                    </span>
+                </div>
+                <div id="hashtag">#EuroPython #EP2015</div>
+            </div>
+        </div>
+        
+        <script>
+        window.config = {
+            SLIDE_WIDTH: 300,
+            SLIDE_HEIGHT: 120,
+            SLIDE_PADDING: 5,
+            SCREEN_PADDING: 10,
+            
+            SLIDE_SIZE_CONFIG: '315-150-5-5',
+            
+            SCREEN_BOTTOM_SPACING: 220,
+            
+            PROJECTOR_SLIDES_LIMIT: 30,
+
+            LIVE_FEED_API_URI: '{{ feed_url }}harvester/data/?event={{ event }}&format=json&limit=30',
+            LIVE_API_TOKEN: '{{token}}',
+
+            REFRESH_INTERVAL: 15000,
+            PROMOTE_INTERVAL: 11000,
+            PROMOTE_DURATION: 6000,
+
+            DEFAULT_WEIGHT: 1000,
+            PROMOTED_WEIGHT_DECREASE: 300,
+            MINIMUM_WEIGHT: 100,
+            
+            LOGO_INTERVAL: 30000,
+            LOGO_DURATION: 12000,
+
+            MIN_POSTS_FOR_COUNTER: 5
+        };
+        </script>
+        <script src="{{ static_url }}projector_lite/js/bundle.js"></script>
+    </body>
+</html>

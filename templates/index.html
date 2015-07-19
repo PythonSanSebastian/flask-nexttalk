@@ -116,8 +116,10 @@
 
         <section>
 
-            <h2>Current talk: Live {{momentjs(timestamp).from_now()}}</h2>
-
+            <h2 style="display:inline" >Current Talk: </h2>
+            {% if next_talk[0] %}
+            <h2 class="timestamps" data-time={{next_talk[0].start}} style="display:inline" >{{ next_talk[0].start }}</h2>
+            {% endif %}
             <div class="wrap">
                 {% if next_talk[0] %}
                     <h1>{{ next_talk[0].title }}</h1>
@@ -153,7 +155,9 @@
                      <h2>Upcoming talk</h2>
                     {% if talks %}
                        {% for t in talks %}
-                    <p class="timestamps" data-time={{t.end}}>{{ t.end }}</p> <p>{{ t.title }} by {{ t.speakers }} ( {{ t.talk_type }} )</p>
+                    <h1 class="timestamps" data-time={{t.end}} style="display:inline" >{{ t.end }}</h1>
+                    <h1 style="display:inline">: {{ t.title }} by {{ t.speakers }} ( {{ t.talk_type }} )</h1>
+                    </br>
                         {% endfor %}
                     {% else %}
                     <h1>No next talks in the next hours... come tomorrow.</h1>

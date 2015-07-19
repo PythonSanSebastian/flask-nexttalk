@@ -81,8 +81,10 @@ class Talks(object):
                     v['end'] = talk_end
                     next_timeframe = talk_end + timedelta(hours=1.5)
 
+
                     if talk_start <= time_obj <= talk_end:
                         talks[key]['current'].append(v)
+                        continue
 
                     if talk_end <= time_obj <= next_timeframe:
                         talks[key]['next'].append(v)

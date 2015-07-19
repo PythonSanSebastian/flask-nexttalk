@@ -37,14 +37,22 @@ def index():
     rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
 
     cur = talks.get_current(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
-    import pprint
-    #pprint.pprint(rooms)
-    pprint.pprint(cur)
+    # import pprint
+    # #pprint.pprint(rooms)
+    # pprint.pprint(cur)
     # Render template with a test timestamp
-    print(datetime.now().replace(minute=0))
+    # print(datetime.now().replace(minute=0))
     return render_template('multi_index.html',
                            timestamp=naive,
                            talks_list=rooms)
+
+@app.route('/feeds')
+def feeds():
+    return render_template('feeds.html',
+                           event='europython',
+                           feed_url='http://www.smartfeedz.com/',
+                           static_url="http://www.smartfeedz.com/static/",
+                           feed_source='http://www.smartfeedz.com/livepage/live-lite/europython/')
 
 @app.route('/menu/')
 def menu():
@@ -101,13 +109,13 @@ def render_room(room):
     actual = rooms.pop(room)
     other = rooms
 
-
+    #next_talks = sorted(actual["next"], key=getattr('start'))
     print(datetime.now().replace(minute=0))
     return render_template('index.html',
                            room_name = room,
                            timestamp=naive,
                            next_talk=actual["current"],
-                           talks=actual["next"],
+                           talks= actual["next"],
                            talks_list=other)
 
 
