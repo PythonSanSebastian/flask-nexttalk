@@ -144,12 +144,22 @@
       }).data('anyslider');
 
       current.pause();
-      next.pause();
+
+      if (next) {
+        next.pause();
+      }
 
       window.setInterval(function() {
         current.next();
-        next.next();
+
+        if (next) {
+          next.next();
+        }
       }, 8000);
+
+      window.setTimeout(function() {
+        window.location.reload();
+      }, 1000 * 60 * 2)
     });
     </script>
     </body>
