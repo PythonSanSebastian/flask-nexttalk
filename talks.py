@@ -77,6 +77,7 @@ class Talks(object):
                     start, end = v.get('timerange').split(",")
                     talk_start = datetime.strptime(start.strip(), '%Y-%m-%d %H:%M:%S')
                     talk_end = datetime.strptime(end.strip(), '%Y-%m-%d %H:%M:%S')
+                    v['start_hour'] = talk_start.strftime("%H:%M")
                     v['start'] = talk_start
                     v['end'] = talk_end
                     next_timeframe = talk_end + timedelta(hours=1.5)
