@@ -75,7 +75,9 @@ def render_hall():
 
     talks = Talks()
 
-    rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+    #rooms = talks.filter_talks_by_room(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+
+    rooms = talks.filter_talks_by_room(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
     print rooms.keys()
     actual = rooms.pop("Exhibition Hall / Helpdesk ")
