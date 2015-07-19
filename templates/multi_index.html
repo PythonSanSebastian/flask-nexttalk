@@ -90,16 +90,19 @@
     </div>
     <div class="clear"></div>
     <footer>
-    <div class="next-talk">
-      <div>
-        <h2>Upcoming talk</h2>
+      <div class="next-talk">
+        <div id="next-talk-container">
+          <div>
+            <h2>Upcoming talk</h2>
 
-        <div class="next-talks-slides">
-          {% for track in talks_list %}
-            {% for t in talks_list[track]["current"] %}
-              <p>{{ t.title }}</p>
-            {% endfor %}
-          {% endfor %}
+            <div class="next-talks-slides">
+              {% for track in talks_list %}
+                {% for t in talks_list[track]["current"] %}
+                  <p>{{ t.title }}</p>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -111,7 +114,6 @@
           <li class="cloudmas"><img src="{{ url_for('static', filename='media/sponsors/cloudmas.png') }}"></li>
         </ul>
       </div>
-    </div>
     </footer>
 
 
