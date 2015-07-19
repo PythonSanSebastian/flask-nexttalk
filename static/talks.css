@@ -145,13 +145,23 @@ section .wrap {
 section footer {
     width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     position: absolute;
     bottom: 3vh;
     height: 10vh;
+
+    display: table;
+}
+
+section footer > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+section footer > div > div {
+    display: inline-block;
+    -ms-text-align-last: auto;
+    text-align: left;
 }
 
 section dl {
