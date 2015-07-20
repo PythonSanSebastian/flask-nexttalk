@@ -29,7 +29,7 @@
                 style: {
                         width: promoted() ? $parent.postStyle.width * $parent.cols + 'px': $parent.postStyle.width + 'px',
                         height: promoted() ? $parent.postStyle.height * 2 + 'px' : $parent.postStyle.height + 'px',
-                        '-webkit-transform': 'translate(' +
+                        'transform': 'translate(' +
                             (promoted() ? 0 : $parent.postStyle.width * col() + 'px') + ', ' +
                             (promoted() ? $parent.postStyle.height + 'px' : $parent.postStyle.height * row() + 'px')
                         + ')',
@@ -50,7 +50,7 @@
                             <div class="text" data-bind="html: text"></div>
                         </div>
                         <div class="when">
-                            <span data-bind="text: created_at"></span>
+                            <span data-bind="text: when()"></span>
                         </div>
                         <div class="author">
                             <img class="avatar" alt="" data-bind="attr: {src: profile_image_url}" />
@@ -73,7 +73,7 @@
                             <div class="text" data-bind="html: caption"></div>
                         </div>
                         <div class="when">
-                            <span data-bind="text: created_at"></span>
+                            <span data-bind="text: when()"></span>
                         </div>
                         <div class="author">
                             <img class="avatar" alt="" data-bind="attr: {src: profile_image_url}" />
@@ -93,7 +93,7 @@
                             <div class="text" data-bind="html: fb_message"></div>
                         </div>
                         <div class="when">
-                            <span data-bind="text: created_at"></span>
+                            <span data-bind="text: when()"></span>
                         </div>
                         <div class="author">
                             <img class="avatar" alt="" data-bind="attr: {src: author_profile_picture}" />
@@ -116,7 +116,7 @@
                             <div class="text" data-bind="html: fb_caption"></div>
                         </div>
                         <div class="when">
-                            <span data-bind="text: created_at"></span>
+                            <span data-bind="text: when()"></span>
                         </div>
                         <div class="author">
                             <img class="avatar" alt="" data-bind="attr: {src: author_profile_picture}" />
