@@ -54,10 +54,10 @@ def index():
 @app.route('/feeds')
 def feeds():
     return render_template('feeds.html',
-                           event='europython',
+                           event='europython2016',
                            feed_url='http://www.smartfeedz.com/',
                            static_url="http://www.smartfeedz.com/static/",
-                           feed_source='http://www.smartfeedz.com/livepage/live-lite/europython/')
+                           feed_source='http://www.smartfeedz.com/livepage/live-lite/europython2016/')
 
 @app.route('/menu/')
 def menu():
