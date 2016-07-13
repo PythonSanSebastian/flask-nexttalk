@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>SmartFeedz | {{event}}</title>
-        
+
         <link href="{{ static_url }}projector_lite/css/bundle.css" rel="stylesheet">
     </head>
 
@@ -21,7 +21,7 @@
             class="posts"
             >
             <div data-bind="
-                attr: {class: 'post promoted-' + promoted() 
+                attr: {class: 'post promoted-' + promoted()
                         + ' row-' + row()
                         + ' col-' + col()
                         + ' visible-' + (!hidden() || promoted())
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <!-- /ko -->
-                        
+
                     <!-- ko if: type === 'instagram' -->
                     <div class="post-wrap instagram text-image">
                         <div class="image">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <!-- /ko -->
-                        
+
                     <!-- ko if: type === 'facebook_status' -->
                     <div class="post-wrap facebook text">
                         <div class="body">
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <!-- /ko -->
-                    
+
                     <!-- ko if: type === 'facebook_image' -->
                     <div class="post-wrap facebook text-image">
                         <div class="image">
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <!-- /ko -->
-                    
+
                     <!-- ko if: type === 'logo' -->
                     <div class="post-wrap logo image">
                         <div class="image">
@@ -137,14 +137,14 @@
                 </div>
             </div>
         </div>
-        
+
         <div
             class="footer"
             data-bind="
                 style: {padding: padding + slidePadding + 'px'}
             ">
             <div class="wrap">
-                <img id="logo" src="{{ static_url }}projector_lite/feed/img/ep-logo.png" alt="" />
+                <img id="logo" src="{{ static_url }}projector_lite/feed/img/ep-logo-2016.png" alt="" />
                 <img id="spyhce-logo" src="{{ static_url }}projector_lite/feed/img/spyhce-logo.png" alt="" />
                 <div id="counters">
                     <span data-bind="if: counts().twitter > MIN_POSTS_FOR_COUNTER">
@@ -157,21 +157,21 @@
                         <img src="{{ static_url }}projector_lite/feed/img/instagram-logo.png" alt="" /> <span data-bind="text: counts().instagram"></span>
                     </span>
                 </div>
-                <div id="hashtag">#EuroPython #EP2015</div>
+                <div id="hashtag">#EuroPython #EP2016</div>
             </div>
         </div>
-        
+
         <script>
         window.config = {
             SLIDE_WIDTH: 300,
             SLIDE_HEIGHT: 120,
             SLIDE_PADDING: 5,
             SCREEN_PADDING: 10,
-            
+
             SLIDE_SIZE_CONFIG: '285-150-5-5',
-            
+
             SCREEN_BOTTOM_SPACING: 220,
-            
+
             PROJECTOR_SLIDES_LIMIT: 30,
 
             LIVE_FEED_API_URI: '{{ feed_url }}harvester/data/?event={{ event }}&format=json&limit=30',
@@ -184,7 +184,7 @@
             DEFAULT_WEIGHT: 1000,
             PROMOTED_WEIGHT_DECREASE: 300,
             MINIMUM_WEIGHT: 100,
-            
+
             LOGO_INTERVAL: 30000,
             LOGO_DURATION: 12000,
 
