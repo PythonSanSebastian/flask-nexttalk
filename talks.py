@@ -3,7 +3,7 @@ import json
 from datetime import datetime, timedelta
 
 
-talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/talks.json")
+talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/clean-talks.json")
 
 
 class Talks(object):
