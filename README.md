@@ -11,10 +11,15 @@ pip install -r requirements/dev_requirements.txt
 python app.py
 ```
 
-TODO
+Lazy mode:
 ------
 
-- Get information from static/data/talks.json to visualize data
+```
+python auto_app.py
+```
+
+TODO
+------
 - Automatically sync static/data/talks.json with internet
-- Add media agregator
+
 
