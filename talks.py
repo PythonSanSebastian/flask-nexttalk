@@ -3,8 +3,8 @@ import json
 from datetime import datetime, timedelta
 
 
-talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/clean-talks.json")
-
+# talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/clean-talks.json")
+talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/accepted_talks.json")
 
 class Talks(object):
 
@@ -74,7 +74,11 @@ class Talks(object):
             for v in value:
                 time_range = v.get('timerange')
                 if time_range:
-                    start, end = v.get('timerange').split(",")
+                    timeranges = v.get('timerange').split(",")
+                    if len(timeranges) > 2:
+                        start, end = timeranges[0], timeranges[-1]
+                    else:
+                        start, end = timeranges
                     talk_start = datetime.strptime(start.strip(), '%Y-%m-%d %H:%M:%S')
                     talk_end = datetime.strptime(end.strip(), '%Y-%m-%d %H:%M:%S')
                     v['start_hour'] = talk_start.strftime("%H:%M")
