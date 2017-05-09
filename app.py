@@ -32,7 +32,7 @@ thread_stop_event = Event()
 @app.route('/'+ cfg.STATIC_PATH +'/<filename>')
 @app.route('/'+ cfg.STATIC_PATH +'/media/sponsors/<path:filename>')
 @app.route('/'+ cfg.STATIC_PATH +'/media/<path:filename>')
-def serve_sponsors(filename):
+def serve_static(filename):
     url = os.path.dirname(str(request.url_rule))[1:]
     #root_dir = os.path.dirname(os.getcwd())
     return send_from_directory(url, filename)
