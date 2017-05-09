@@ -28,6 +28,7 @@ Add THEMES:
 ```
 THEME="ep2017"
 ```
+3. check serve_static function in app.py has all needed app.route definitions
 
 TODO
 ------
