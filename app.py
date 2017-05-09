@@ -6,23 +6,36 @@ from threading import Thread, Event
 from time import sleep
 
 from flask import Flask, render_template
-from flask.ext.socketio import SocketIO
+from flask import send_from_directory, request
+#from flask.ext.socketio import SocketIO
 from momentjs import momentjs
 
 from talks import Talks
+import config as cfg
 
+import os
 
 # Initialize the Flask application
-app = Flask(__name__, static_path='/static', static_url_path='/static')
+print(cfg.TEMPLATES_PATH)
+app = Flask(__name__, static_path="/" + cfg.STATIC_PATH, static_url_path="/" + cfg.STATIC_PATH, template_folder=cfg.TEMPLATES_PATH)
 app.config['DEBUG'] = True
 
-socket = SocketIO(app)
+#socket = SocketIO(app)
 # Set jinja template global
 app.jinja_env.globals['momentjs'] = momentjs
 
 thread = Thread()
 thread_stop_event = Event()
 
+#ADD ONE ROUTE PER FOLDER IN STATIC FOLDER
+@app.route('/'+ cfg.STATIC_PATH +'/media/fonts/<filename>')
+@app.route('/'+ cfg.STATIC_PATH +'/<filename>')
+@app.route('/'+ cfg.STATIC_PATH +'/media/sponsors/<path:filename>')
+@app.route('/'+ cfg.STATIC_PATH +'/media/<path:filename>')
+def serve_sponsors(filename):
+    url = os.path.dirname(str(request.url_rule))[1:]
+    #root_dir = os.path.dirname(os.getcwd())
+    return send_from_directory(url, filename)
 
 @app.route('/')
 def index():
@@ -86,7 +99,7 @@ def render_hall():
 
     rooms = talks.filter_talks_by_room(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-    print rooms.keys()
+    print(rooms.keys())
     actual = rooms.pop("Exhibition Hall / Helpdesk ")
 
     other = random_talks(rooms)

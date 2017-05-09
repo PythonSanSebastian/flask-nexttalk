@@ -1,10 +1,11 @@
 import os
 import json
 from datetime import datetime, timedelta
-
+import config as cfg
 
 # talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/clean-talks.json")
-talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/accepted_talks.json")
+# talks_path = "%s%s" % (os.path.dirname(os.path.abspath(__file__)), "/static/data/accepted_talks.json")
+talks_path = cfg.TALKS_PATH
 
 class Talks(object):
 
