@@ -30,6 +30,11 @@ THEME="ep2017"
 ```
 3. check serve_static function in app.py has all needed app.route definitions
 
+
+SETUP
+------
+[Follow this tutorial](https://github.com/PythonSanSebastian/flask-nexttalk/blob/ep2016/SETUP.md)
+
 TODO
 ------
 - Automatically sync static/data/talks.json with internet
