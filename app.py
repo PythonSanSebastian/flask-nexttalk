@@ -66,11 +66,17 @@ def index():
 
 @app.route('/feeds')
 def feeds():
-    return render_template('feeds.html',
-                           event='europython2016',
-                           feed_url='http://www.smartfeedz.com/',
-                           static_url="http://www.smartfeedz.com/static/",
-                           feed_source='http://www.smartfeedz.com/livepage/live-lite/europython2016/')
+    temp = '<a class="twitter-grid" href="https://twitter.com/search?l=&q=%23europython%2C%20OR%20%23ep2017&src=typd&lang=en">EuroPython 2017 (#EUROPYTHON #EP2017)</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>'
+    temp = '''
+    <a class="twitter-grid" data-dnt="true" href="https://twitter.com/search?q=%23europython%2C%20OR%20%23ep2017" data-widget-id="861970559399325696">Tweets about #europython, OR #ep2017</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    '''
+
+    #return render_template('feeds.html',
+    #                       event='europython2016',
+    #                       feed_url='http://www.smartfeedz.com/',
+    #                       static_url="http://www.smartfeedz.com/static/",
+    #                       feed_source='http://www.smartfeedz.com/livepage/live-lite/europython2016/')
+    return temp
 
 @app.route('/menu/')
 def menu():
