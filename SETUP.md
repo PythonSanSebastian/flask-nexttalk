@@ -132,7 +132,7 @@ sudo apt-get install unclutter
 After this we are going to set everything in the autostart file for LXDE.
 
 ```
-~/.config/lxsession/LXDE-pi/autostart
+nano ~/.config/lxsession/LXDE-pi/autostart
 ```
 
 Add this to the file.
