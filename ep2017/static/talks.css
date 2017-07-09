@@ -259,6 +259,10 @@ footer .next-talk p, footer .next-talk h2 {
     padding: 0 0 0 4vh;
 }
 
+.twitter-wall {
+    background: white;
+}
+
 #next-talk-container {
     display: table;
     height: 100%;
