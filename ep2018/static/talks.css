@@ -1,0 +1,388 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('media/fonts/lato-regular-webfont.eot');
+    src: url('media/fonts/lato-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('media/fonts/lato-regular-webfont.woff2') format('woff2'),
+         url('media/fonts/lato-regular-webfont.woff') format('woff'),
+         url('media/fonts/lato-regular-webfont.ttf') format('truetype'),
+         url('media/fonts/lato-regular-webfont.svg#latoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('media/fonts/lato-bold-webfont.eot');
+    src: url('media/fonts/lato-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('media/fonts/lato-bold-webfont.woff2') format('woff2'),
+         url('media/fonts/lato-bold-webfont.woff') format('woff'),
+         url('media/fonts/lato-bold-webfont.ttf') format('truetype'),
+         url('media/fonts/lato-bold-webfont.svg#latobold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('media/fonts/lato-black-webfont.eot');
+    src: url('media/fonts/lato-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('media/fonts/lato-black-webfont.woff2') format('woff2'),
+         url('media/fonts/lato-black-webfont.woff') format('woff'),
+         url('media/fonts/lato-black-webfont.ttf') format('truetype'),
+         url('media/fonts/lato-black-webfont.svg#latoblack') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: rgb(0, 111, 68);
+    background-image:
+      repeating-linear-gradient(transparent, transparent 50px,
+        rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px,
+        transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px,
+        rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px,
+        rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px,
+        rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px,
+        rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px,
+        rgba(0,0,0,.5) 232px, transparent 232px),
+      repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px,
+        rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px,
+        transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px,
+        rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px,
+        rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+      repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px,
+        rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
+    # background-color: #00B5E2;
+    #background-size:75px 100px;
+
+    color: white;
+
+    font-family: 'Lato';
+
+    font-size: 1.6rem;
+}
+
+header {
+    height: 15vh;
+
+    position: relative;
+}
+
+header h1 {
+    width: 70%;
+    background: white;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    white-space: nowrap;
+    text-indent: 100%;
+    overflow: hidden;
+
+    background: white url(media/ep_logo.png) no-repeat 5% center;
+    background-size: auto 60%;
+}
+
+header #time-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 30%;
+
+    font-size: 4rem;
+
+    height: 100%;
+    text-align: center;
+
+
+}
+
+header #time-container .wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgb(154, 51, 36);
+
+}
+
+header #time-container time {
+    display: table-cell;
+    vertical-align: middle;
+
+
+}
+
+header time:before {
+    content: '';
+    display: inline-block;
+
+    height: 5vh;
+    width: 5vh;
+
+    background: url(media/hour.png) no-repeat center;
+    background-size: contain;
+    vertical-align: baseline;
+
+    position: relative;
+    top: 1vh;
+
+    margin-right: .5vh;
+}
+
+section {
+    height: 75vh;
+
+    padding: 10vh 3%;
+
+    position: relative;
+}
+
+section h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3f9183;
+
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+
+    margin-bottom: 2vh;
+}
+
+section .wrap {
+    width: 80%;
+}
+
+section footer {
+    width: 100%;
+
+    position: absolute;
+    bottom: 3vh;
+    height: 10vh;
+
+    display: table;
+}
+
+section footer > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+section footer > div > div {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+}
+
+section dl {
+    display: inline-block;
+
+    vertical-align: top;
+}
+
+section dt {
+    display: block;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: #3f9183;
+    font-weight: bold;
+
+    margin-bottom: 0.5rem;
+}
+
+section dd {
+    display: block;
+    font-weight: bold;
+    opacity: 0.5;
+
+    font-size: 2rem;
+}
+
+section .room:before {
+    content: '';
+    display: inline-block;
+
+    height: 5rem;
+    width: 6rem;
+
+    background: url(media/room.png) no-repeat center;
+    background-size: contain;
+}
+
+section .speaker:before {
+    content: '';
+    display: inline-block;
+
+    height: 5rem;
+    width: 6rem;
+
+    background: url(media/speaker.png) no-repeat center;
+    background-size: contain;
+}
+
+section h1 {
+    font-weight: 900;
+    font-size: 6rem;
+
+    display: inline;
+
+    background: rgba(0, 0, 0, 0);
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 10%, #E87722 10.1%, #E87722 89.9%, rgba(0, 0, 0, 0) 90%, rgba(231,56,39,0) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(10%, rgba(0, 0, 0, 0)), color-stop(10.1%, #E87722), color-stop(71%, rgba(240,47,23,1)), color-stop(89%, rgba(234,53,33,1)), color-stop(90%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(231,56,39,0)));
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 10%, #E87722 10.1%, #E87722 89.9%, rgba(0, 0, 0, 0) 90%, rgba(231,56,39,0) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 10%, #E87722 10.1%, #E87722 89.9%, rgba(0, 0, 0, 0) 90%, rgba(231,56,39,0) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 10%, #E87722 10.1%, #E87722 89.9%, rgba(0, 0, 0, 0) 90%, rgba(231,56,39,0) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 10%, #E87722 10.1%, #E87722 89.9%, rgba(0, 0, 0, 0) 90%, rgba(231,56,39,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', endColorstr='#e73827', GradientType=0 );
+
+    color: white;
+    padding: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+body > footer {
+    height: 10vh;
+
+    position: relative;
+
+    background: #ffb81c;
+}
+
+footer .next-talk {
+    height: 100%;
+    width: 60%;
+    overflow: hidden;
+}
+
+footer .next-talk p, footer .next-talk h2 {
+    padding: 0 0 0 4vh;
+
+
+}
+
+.twitter-wall {
+    background: white;
+}
+
+#next-talk-container {
+    display: table;
+    height: 100%;
+    width: 100%;
+
+    background-color: rgb(154, 51, 36);
+}
+
+#next-talk-container > div {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.next-talks-slides {
+    width: 100%;
+}
+
+footer .next-talk h2 {
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    font-weight: bold;
+    font-size: 1.4rem;
+
+    margin-bottom: 0.5rem;
+}
+
+footer .next-talk h1 {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+footer #sponsors-container {
+    width: 40%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    background: #ffffff;
+
+}
+
+footer #sponsors-container .wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+footer ul {
+    text-align: center;
+
+    list-style: none;
+
+    overflow: auto;
+    height: 10vh;
+}
+
+footer ul li {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+footer ul img {
+    height: 80%;
+    width: auto;
+    margin: 0.6rem 1rem;
+    vertical-align: middle;
+}
+
+footer ul .datarobot img {
+    max-height: 1.7vh;
+}
+
+footer ul .cloudmas img {
+    max-height: 3.4vh;
+}
+
+footer ul .google img {
+    position: relative;
+    top: .3vh;
+}
+
+
+.slides button {
+    display: none!important;
+}
+
+.container{
+    width: 50%;
+    float:left;
+}
+.clear{
+    clear: both;
+}
