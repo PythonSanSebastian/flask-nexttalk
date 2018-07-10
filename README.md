@@ -30,6 +30,15 @@ THEME="ep2017"
 ```
 3. check serve_static function in app.py has all needed app.route definitions
 
+SPONSORS
+------
+
+From ep2018 theme sponsors are added automatically if there are in the proper static folder. Folder can be changed in the config.py.
+
+```
+# DEFAULT VALUE
+SPONSOR_IMAGES = "media/sponsors"
+```
 
 SETUP
 ------
