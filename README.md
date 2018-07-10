@@ -59,4 +59,10 @@ SETUP
 
 TODO
 ------
+- Why is ep2016 main branch? should not be master? change it idiot!
 - Automatically sync static/data/talks.json with internet
+
+ACTIVE CONTRIBUTORS
+-----
+ - [@patrick91](https://github.com/patrick91) : Social part
+ - [@oiertwo](https://github.com/oiertwo) : Code mantainer
