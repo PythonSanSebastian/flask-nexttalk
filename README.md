@@ -42,7 +42,7 @@ SPONSOR_IMAGES = "media/sponsors"
 
 SOCIAL PART
 -----
-Social part is a IFRAME, should be hosted and created somewhere. Last year the social part was created and hosted by  @patrick91 
+Social part is a IFRAME, should be hosted and created somewhere. Last year the social part was created and hosted by  [@patrick91](https://github.com/patrick91)
 
 Source of the Iframe can be easily changed in the config.py file:
 
