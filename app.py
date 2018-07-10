@@ -68,7 +68,8 @@ def index():
                            timestamp=naive,
                            empty=empty,
                            talks_list=rooms,
-                           sponsors=sponsors_list)
+                           sponsors=sponsors_list,
+                           social_iframe_src=cfg.SOCIAL_IFRAME_SRC)
 
 @app.route('/feeds')
 def feeds():
