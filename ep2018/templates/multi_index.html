@@ -118,23 +118,9 @@
       <div id="sponsors-container">
         <div class="wrapper">
           <ul class="sponsors">
-            <li class="psf"><img src="{{ url_for('static', filename='media/sponsors/psf.png') }}"></li>
-            <li class="2nd"><img src="{{ url_for('static', filename='media/sponsors/2nd.png') }}"></li>
-            <li class="adimian"><img src="{{ url_for('static', filename='media/sponsors/adimian.png') }}"></li>
-            <li class="Criteo"><img src="{{ url_for('static', filename='media/sponsors/Criteo.png') }}"></li>
-            <li class="datadog"><img src="{{ url_for('static', filename='media/sponsors/dd.png') }}"></li>
-            <li class="demonware"><img src="{{ url_for('static', filename='media/sponsors/demonware.png') }}"></li>
-            <li class="facebook"><img src="{{ url_for('static', filename='media/sponsors/facebook.png') }}"></li>
-            <li class="intel"><img src="{{ url_for('static', filename='media/sponsors/intel.png') }}"></li>
-            <li class="jetbrains"><img src="{{ url_for('static', filename='media/sponsors/jetbrains.png') }}"></li>
-            <li class="kiwi"><img src="{{ url_for('static', filename='media/sponsors/kiwi.png') }}"></li>
-            <li class="microsoft"><img src="{{ url_for('static', filename='media/sponsors/Microsoft.png') }}"></li>
-            <li class="nexmo"><img src="{{ url_for('static', filename='media/sponsors/Nexmo.png') }}"></li>
-            <li class="numberly"><img src="{{ url_for('static', filename='media/sponsors/numberly.png') }}"></li>
-            <li class="ontruck"><img src="{{ url_for('static', filename='media/sponsors/ONTRUCK.png') }}"></li>
-            <li class="winton"><img src="{{ url_for('static', filename='media/sponsors/winton.jpg') }}"></li>
-            <li class="yelp"><img src="{{ url_for('static', filename='media/sponsors/yelp.png') }}"></li>
-
+            {% for s in sponsors %}
+              <li class="{{ s }}"><img src="{{ url_for('static', filename=sponsors[s]) }}"></li>
+            {% endfor %}
           </ul>
         </div>
       </div>

@@ -12,9 +12,11 @@ TALKS_JSON = "/static/data/accepted_talks.json"
 STATIC = "static"
 TEMPLATES = "templates"
 
+LOCAL_TZ = "Europe/Madrid"
+
 #IF THE THEME ALLOWES:
 
-SPONSORS_IMAGES = '/static/media/sponsors'
+SPONSORS_IMAGES = 'media/sponsors' #in static folder!!!!
 
 
 
@@ -25,4 +27,4 @@ TEMPLATES_PATH = os.path.join(THEME, TEMPLATES)
 TALKS_PATH = "%s%s%s%s" % (os.path.dirname(os.path.abspath(__file__)),"/",THEME, TALKS_JSON)
 
 if SPONSORS_IMAGES:
-    SPONSORS_IMAGES_PATH = os.path.join(THEME, SPONSORS_IMAGES)
+    SPONSORS_IMAGES_PATH = os.path.join(THEME, STATIC, SPONSORS_IMAGES)

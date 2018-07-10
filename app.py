@@ -11,6 +11,7 @@ from flask import send_from_directory, request
 from momentjs import momentjs
 
 from talks import Talks
+from sponsors import Sponsors
 import config as cfg
 
 import os
@@ -39,7 +40,7 @@ def serve_static(filename):
 
 @app.route('/')
 def index():
-    pytz.timezone("Europe/Madrid")
+    pytz.timezone(cfg.LOCAL_TZ)
     naive = datetime.now().replace(minute=50)
 
     talks = Talks()
@@ -54,6 +55,10 @@ def index():
     empty = all([len(rooms[key]['current']) == 0 for key in rooms.keys()])
 
     cur = talks.get_current(datetime.strptime('2015-07-22 15:45:00', '%Y-%m-%d %H:%M:%S'))
+
+    sponsors = Sponsors()
+    sponsors_list = sponsors.sponsors_list()
+    print(sponsors_list)
     # import pprint
     # #pprint.pprint(rooms)
     # pprint.pprint(cur)
@@ -62,7 +67,8 @@ def index():
     return render_template('multi_index.html',
                            timestamp=naive,
                            empty=empty,
-                           talks_list=rooms)
+                           talks_list=rooms,
+                           sponsors=sponsors_list)
 
 @app.route('/feeds')
 def feeds():
