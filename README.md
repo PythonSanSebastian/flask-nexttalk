@@ -2,20 +2,19 @@
 - Working in python2
 - Testing in python3 (fails gevent-socketio)
 
-Instructions:
-------
-```
-pip install -r requirements/dev_requirements.txt
-```
-```
+Installation:
+-------------
+
+```bash
+make install
 python app.py
 ```
 
-Lazy mode:
-------
+Development:
+-------------
 
-```
-python auto_app.py
+```bash
+make install-dev
 ```
 
 THEMES:
@@ -52,14 +51,12 @@ SOCIAL_IFRAME_SRC = "http://your_url.com"
 ```
 
 
-
 SETUP
 ------
 [Follow this tutorial](https://github.com/PythonSanSebastian/flask-nexttalk/blob/ep2016/SETUP.md)
 
 TODO
 ------
-- Why is ep2016 main branch? should not be master? change it idiot!
 - Automatically sync static/data/talks.json with internet
 
 ACTIVE CONTRIBUTORS
