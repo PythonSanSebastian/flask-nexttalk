@@ -1,0 +1,25 @@
+{
+  "name": "flask-nexttalk",
+  "version": "1.0.0",
+  "description": "- Working in python2 - Testing in python3 (fails gevent-socketio)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PythonSanSebastian/flask-nexttalk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PythonSanSebastian/flask-nexttalk/issues"
+  },
+  "homepage": "https://github.com/PythonSanSebastian/flask-nexttalk#readme",
+  "dependencies": {
+    "anyslider": "^2.1.0",
+    "easing": "^1.2.1",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0"
+  }
+}
